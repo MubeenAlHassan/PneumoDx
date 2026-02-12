@@ -1,6 +1,15 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+
 export function Navigation() {
+
+  const router = useRouter()
+
+  const handleClick = () => {
+    router.push('/signup')
+  }
+
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-50">
       <div className="glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-sm border border-slate-200/50 dark:border-slate-800/50">
@@ -26,7 +35,9 @@ export function Navigation() {
             Resources
           </a>
         </div>
-        <button className="bg-pneumo-primary text-white px-5 py-2 rounded-full font-semibold text-sm hover:opacity-90 transition-opacity">
+        <button
+          onClick={handleClick}
+          className="bg-pneumo-primary text-white px-5 py-2 rounded-full font-semibold text-sm hover:opacity-90 transition-opacity">
           Get Started
         </button>
       </div>
