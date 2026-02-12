@@ -6,13 +6,13 @@ export function SignupFooter() {
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-sm text-slate-500">© 2024 PneumaDx Healthcare Technologies Inc. All rights reserved.</p>
         <div className="flex gap-8 text-sm text-slate-400">
-          <a href="#" className="hover:text-signup-primary transition-colors">
+          <a href="#" className="hover:text-pneumo-primary transition-colors">
             Privacy Policy
           </a>
-          <a href="#" className="hover:text-signup-primary transition-colors">
+          <a href="#" className="hover:text-pneumo-primary transition-colors">
             GDPR Compliance
           </a>
-          <a href="#" className="hover:text-signup-primary transition-colors">
+          <a href="#" className="hover:text-pneumo-primary transition-colors">
             Support
           </a>
         </div>

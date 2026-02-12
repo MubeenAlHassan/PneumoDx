@@ -33,7 +33,7 @@ export function SignupForm() {
       <form onSubmit={handleSubmit} className="grid grid-cols-12 gap-6">
         {/* Personal Info Card */}
         <div className="col-span-12 md:col-span-7 glass-panel rounded-xl p-6 shadow-xl shadow-signup-primary/5">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-signup-primary mb-4 flex items-center gap-2 font-display">
+          <h3 className="text-xs font-bold uppercase tracking-widest text-pneumo-primary mb-4 flex items-center gap-2 font-display">
             <span className="material-icons-round text-sm">person</span> Practitioner Identity
           </h3>
           <div className="space-y-4">
@@ -75,7 +75,7 @@ export function SignupForm() {
           />
           <div className="absolute inset-0 bg-signup-primary/20 mix-blend-multiply" />
           <div className="absolute bottom-4 left-4 right-4">
-            <span className="inline-block px-3 py-1 bg-white/90 dark:bg-slate-900/90 rounded-full text-xs font-bold text-signup-primary uppercase font-display">
+            <span className="inline-block px-3 py-1 bg-white/90 dark:bg-slate-900/90 rounded-full text-xs font-bold text-pneumo-primary uppercase font-display">
               Innovation Center
             </span>
           </div>
@@ -83,7 +83,7 @@ export function SignupForm() {
 
         {/* Workplace Card */}
         <div className="col-span-12 md:col-span-5 glass-panel rounded-xl p-6 shadow-xl shadow-signup-primary/5">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-signup-primary mb-4 flex items-center gap-2 font-display">
+          <h3 className="text-xs font-bold uppercase tracking-widest text-pneumo-primary mb-4 flex items-center gap-2 font-display">
             <span className="material-icons-round text-sm">apartment</span> Workplace
           </h3>
           <div>
@@ -104,7 +104,7 @@ export function SignupForm() {
             </select>
             <p className="text-xs text-slate-500 mt-2 leading-tight">
               Can't find your hospital?{' '}
-              <a href="#" className="text-signup-primary hover:underline font-semibold">
+              <a href="#" className="text-pneumo-primary hover:underline font-semibold">
                 Register your institution.
               </a>
             </p>
@@ -113,7 +113,7 @@ export function SignupForm() {
 
         {/* Credentials Card */}
         <div className="col-span-12 md:col-span-7 glass-panel rounded-xl p-6 shadow-xl shadow-signup-primary/5">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-signup-primary mb-4 flex items-center gap-2 font-display">
+          <h3 className="text-xs font-bold uppercase tracking-widest text-pneumo-primary mb-4 flex items-center gap-2 font-display">
             <span className="material-icons-round text-sm">lock</span> Secure Credentials
           </h3>
           <div className="grid md:grid-cols-2 gap-4">
@@ -154,15 +154,15 @@ export function SignupForm() {
               name="termsAccepted"
               checked={formData.termsAccepted}
               onChange={handleChange}
-              className="w-5 h-5 rounded text-signup-primary border-slate-300 focus:ring-signup-primary bg-white/50"
+              className="w-5 h-5 rounded text-pneumo-primary border-slate-300 focus:ring-signup-primary bg-white/50"
             />
             <label className="text-sm text-slate-600 dark:text-slate-400 leading-snug">
               I agree to the{' '}
-              <a href="#" className="text-signup-primary font-semibold hover:underline">
+              <a href="#" className="text-pneumo-primary font-semibold hover:underline">
                 Terms of Service
               </a>{' '}
               and{' '}
-              <a href="#" className="text-signup-primary font-semibold hover:underline">
+              <a href="#" className="text-pneumo-primary font-semibold hover:underline">
                 Data Handling Policy
               </a>
               .
@@ -171,7 +171,7 @@ export function SignupForm() {
           <button
             type="submit"
             disabled={!formData.termsAccepted}
-            className="w-full md:w-auto bg-signup-primary hover:bg-signup-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 px-10 rounded-lg transition-all shadow-lg shadow-signup-primary/25 flex items-center justify-center gap-2 group font-display submit"
+            className="w-full md:w-auto bg-pneumo-primary hover:bg-pneumo-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 px-10 rounded-lg transition-all shadow-lg shadow-signup-primary/25 flex items-center justify-center gap-2 group font-display submit"
           >
             Create Account
             <span className="material-icons-round group-hover:translate-x-1 transition-transform">
@@ -184,7 +184,7 @@ export function SignupForm() {
       {/* Bottom Nav */}
       <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4 text-sm font-medium font-display">
         <span className="text-slate-500">Already have a professional account?</span>
-        <a href="/" className="text-signup-primary hover:underline flex items-center gap-1">
+        <a href="/" className="text-pneumo-primary hover:underline flex items-center gap-1">
           Log in to Dashboard
           <span className="material-icons-round text-sm">login</span>
         </a>
