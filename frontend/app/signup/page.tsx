@@ -14,8 +14,8 @@ export default function SignupPage() {
     <div className="relative">
       <SignupBackgroundShapes />
       <main className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 md:p-12">
-        <SignupHeader />
-        <section className="w-full max-w-6xl">
+        {/* <SignupHeader /> */}
+        <section className="w-full max-w-6xl mt-28">
           <div className="grid lg:grid-cols-5 gap-8 items-start">
             <SignupSidebar />
             <SignupForm />
