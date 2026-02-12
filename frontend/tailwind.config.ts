@@ -13,12 +13,16 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
         serif: ['var(--font-playfair)', 'serif'],
+        display: ['var(--font-manrope)', 'sans-serif'],
       },
       colors: {
         'pneumo-primary': '#13a4ec',
         'pneumo-lavender': '#e0e7ff',
         'pneumo-bg-light': '#f6f7f8',
         'pneumo-bg-dark': '#101c22',
+        'signup-primary': '#194ce6',
+        'signup-light': '#f6f6f8',
+        'signup-dark': '#111521',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
