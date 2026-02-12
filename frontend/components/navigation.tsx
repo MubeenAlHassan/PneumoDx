@@ -15,7 +15,7 @@ export function Navigation() {
       <div className="glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-sm border border-slate-200/50 dark:border-slate-800/50">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-pneumo-primary rounded-lg flex items-center justify-center">
-            <span className="material-icons-round text-white text-xl">insights</span>
+                      <span className="material-icons-round">biotech</span>
           </div>
           <span className="font-bold tracking-tight text-lg">
             Pneumo<span className="text-pneumo-primary">Dx</span>
