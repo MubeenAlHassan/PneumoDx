@@ -34,7 +34,7 @@ export function LoginForm() {
               </span>
               <input
                 type="email"
-                placeholder="dr.smith@hospital.org"
+                placeholder="dr.mubeen@hospital.org"
                 className="w-full pl-12 pr-4 py-4 bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg focus:ring-2 focus:ring-pneumo-primary/20 focus:border-pneumo-primary outline-none transition-all placeholder:text-slate-400 text-slate-900 dark:text-white"
               />
             </div>
