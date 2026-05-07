@@ -5,6 +5,7 @@ import React from "react"
 import { FormEvent, useState } from 'react'
 
 export function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
     fullName: '',
     licenseId: '',
@@ -38,7 +39,7 @@ export function SignupForm() {
           </h2>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 font-display">
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 font-display">
                 Full Professional Name
               </label>
               <input
@@ -47,11 +48,11 @@ export function SignupForm() {
                 value={formData.fullName}
                 onChange={handleChange}
                 placeholder="Dr. Sarah Jenkins"
-                className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
+                className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 font-display">
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 font-display">
                 Medical License ID
               </label>
               <input
@@ -60,7 +61,7 @@ export function SignupForm() {
                 value={formData.licenseId}
                 onChange={handleChange}
                 placeholder="MD-123-456-789"
-                className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
+                className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
               />
             </div>
           </div>
@@ -71,14 +72,14 @@ export function SignupForm() {
               <span className="material-icons-round text-sm">apartment</span> Workplace
             </h2>
             <div>
-              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 font-display">
+              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 font-display">
                 Primary Affiliation
               </label>
               <select
                 name="hospital"
                 value={formData.hospital}
                 onChange={handleChange}
-                className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
+                className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
               >
                 <option>Select Hospital</option>
                 <option>Mayo Clinic</option>
@@ -101,32 +102,49 @@ export function SignupForm() {
               <h2 className="text-xs font-bold uppercase tracking-widest text-pneumo-primary mb-4 flex items-center gap-2 font-display">
                 <span className="material-icons-round text-sm">lock</span> Secure Credentials
               </h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 font-display">
-                    Email Address
-                  </label>
+              <div className="grid md:grid-cols-1 gap-2">
+                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 font-display">
+                  Email Address
+                </label>
+                <div className="relative group">
+                  <span className="material-icons-round absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-pneumo-primary transition-colors">
+                    alternate_email
+                  </span>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="sarah.j@hospital.org"
-                    className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
+                    className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg pl-11 px-4 py-3 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1 font-display">
+                  <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 font-display">
                     Password
                   </label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="••••••••"
-                    className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
-                  />
+                  <div className="relative group">
+                    <span className="material-icons-round absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-pneumo-primary transition-colors">
+                      lock_open
+                    </span>
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      placeholder="••••••••"
+                      className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg pl-12 px-4 py-3 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
+                    >
+                      <span className="material-icons-round text-xl">
+                        {showPassword ? 'visibility_off' : 'visibility'}
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
