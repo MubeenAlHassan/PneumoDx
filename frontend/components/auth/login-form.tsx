@@ -16,7 +16,7 @@ export function LoginForm() {
   }
 
   return (
-    <div className="md:col-span-7">
+    <div className="md:col-span-3">
       <div className="glass-panel rounded-xl p-10 shadow-xl shadow-pneumo-primary/5">
         <div className="mb-8">
           <h2 className="text-xs font-bold uppercase tracking-widest text-pneumo-primary mb-4 flex items-center gap-2 font-display"><span className="material-icons-round text-sm">medical_services</span>Doctor Login</h2>
