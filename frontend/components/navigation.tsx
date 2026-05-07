@@ -21,7 +21,7 @@ export function Navigation() {
           onClick={logoIconHandle}
           className="flex items-center gap-2 cursor-pointer">
           <div className="w-8 h-8 bg-pneumo-primary rounded-lg flex items-center justify-center">
-            <span className="material-icons-round">biotech</span>
+            <span className="material-icons-round text-white">biotech</span>
           </div>
           <span className="font-bold tracking-tight text-lg">
             Pneumo<span className="text-pneumo-primary">Dx</span>

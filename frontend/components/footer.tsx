@@ -7,7 +7,7 @@ export function Footer() {
         <div className="col-span-2">
           <div className="flex items-center gap-2 mb-6">
             <div className="w-8 h-8 bg-pneumo-primary rounded-lg flex items-center justify-center">
-              <span className="material-icons-round text-white text-xl">insights</span>
+              <span className="material-icons-round text-white text-xl">biotech</span>
             </div>
             <span className="font-bold tracking-tight text-lg">
               Pneumo<span className="text-pneumo-primary">Dx</span>
