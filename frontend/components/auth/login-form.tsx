@@ -19,7 +19,7 @@ export function LoginForm() {
     <div className="md:col-span-7">
       <div className="glass-panel rounded-xl p-10 shadow-xl shadow-pneumo-primary/5">
         <div className="mb-8">
-          <h2 className="font-serif text-2xl font-medium text-slate-900 dark:text-white mb-2">Doctor Login</h2>
+          <h2 className="text-xs font-bold uppercase tracking-widest text-pneumo-primary mb-4 flex items-center gap-2 font-display"><span className="material-icons-round text-sm">medical_services</span>Doctor Login</h2>
           <p className="text-slate-500 dark:text-slate-400 text-sm">Please enter your medical credentials to continue.</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
