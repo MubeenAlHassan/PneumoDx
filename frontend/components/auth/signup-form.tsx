@@ -152,7 +152,7 @@ export function SignupForm() {
           </div>
 
           {/* Bottom Nav */}
-          <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-2 text-sm font-medium font-display">
+          <div className="mt-8 pt-8 flex flex-col md:flex-row items-center justify-center gap-2 text-sm font-medium font-display">
             <span className="text-slate-500">Already have a professional account?</span>
             <Link href="/login" className="text-pneumo-primary hover:underline">
               Login
