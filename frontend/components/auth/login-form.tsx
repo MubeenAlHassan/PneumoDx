@@ -98,8 +98,8 @@ export function LoginForm() {
         <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800 text-center">
           <p className="text-sm text-slate-500 dark:text-slate-400">
             New to the platform?{' '}
-            <Link href="/signup" className="text-pneumo-primary font-bold hover:underline ml-1">
-              Signup Here
+            <Link href="/signup" className="text-pneumo-primary hover:underline gap-1">
+              Signup
             </Link>
           </p>
         </div>
