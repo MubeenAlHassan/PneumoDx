@@ -1,6 +1,6 @@
 'use client'
 
-export function SignupSidebar() {
+export function Sidebar() {
   return (
     <div className="lg:col-span-2 space-y-8">
       <h1 className="font-serif text-5xl md:text-6xl leading-tight text-slate-800 dark:text-white">

@@ -1,6 +1,6 @@
 'use client'
 
-export function SignupBackgroundShapes() {
+export function RightBackgroundShapes() {
   return (
     <div className="fixed inset-0 -z-10 bg-signup-light dark:bg-signup-dark overflow-hidden">
       <div

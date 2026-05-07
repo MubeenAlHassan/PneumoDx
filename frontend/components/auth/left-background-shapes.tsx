@@ -1,6 +1,6 @@
 'use client'
 
-export function BackgroundShapes() {
+export function LeftBackgroundShapes() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       <div className="absolute w-[600px] h-[600px] bg-pneumo-primary rounded-full -top-20 -left-20 animate-pulse opacity-40 blur-[80px] z-0"></div>
