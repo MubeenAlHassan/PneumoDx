@@ -184,8 +184,8 @@ export function SignupForm() {
       {/* Bottom Nav */}
       <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4 text-sm font-medium font-display">
         <span className="text-slate-500">Already have a professional account?</span>
-        <a href="/" className="text-pneumo-primary hover:underline flex items-center gap-1">
-          Log in to Dashboard
+        <a href="/login" className="text-pneumo-primary hover:underline flex items-center gap-1">
+          Login
           <span className="material-icons-round text-sm">login</span>
         </a>
       </div>
