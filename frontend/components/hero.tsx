@@ -1,5 +1,7 @@
 'use client'
 
+import Link from "next/link"
+
 export function Hero() {
   return (
     <header className="relative pt-44 pb-20 px-6 max-w-7xl mx-auto overflow-hidden">
@@ -18,12 +20,12 @@ export function Hero() {
             Harnessing Convolutional neural network architectures to detect pneumonia indicators with 99.4% sensitivity. Empowers clinicians with real-time, explainable diagnostic insights.
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
-            <button className="bg-pneumo-primary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-pneumo-primary/25 flex items-center gap-2 group hover:opacity-90 transition-opacity">
+            <Link href="login" className="bg-pneumo-primary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-pneumo-primary/25 flex items-center gap-2 group hover:opacity-90 transition-opacity">
               Get Started{' '}
               <span className="material-icons-round transition-transform group-hover:translate-x-1">
                 arrow_forward
               </span>
-            </button>
+            </Link>
             <button className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
               View Sample Scan
             </button>
