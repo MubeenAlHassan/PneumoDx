@@ -1,11 +1,11 @@
-import React from "react"
+import React, { ViewTransition } from "react"
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import { Navigation } from '@/components/navigation'
 
 import './globals.css'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
 })
@@ -30,8 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <body className="font-sans antialiased bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 overflow-x-hidden">
-        <Navigation  />
-        {children}
+        <ViewTransition>
+          <Navigation />
+          {children}
+        </ViewTransition>
       </body>
     </html>
   )

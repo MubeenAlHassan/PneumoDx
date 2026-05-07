@@ -120,3 +120,47 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* *************************************************** */
+/* custom transition style for routes (ViewTransition) */
+/* *************************************************** */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 320ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-fill-mode: both;
+  }
+
+  ::view-transition-old(root) {
+    animation-name: route-exit;
+  }
+
+  ::view-transition-new(root) {
+    animation-name: route-enter;
+  }
+}
+
+@keyframes route-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes route-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
