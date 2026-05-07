@@ -9,7 +9,7 @@ export function Header() {
     <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10">
       <div>
         <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2">
-          Good Morning, <span className="text-pneumo-primary">Dr. Chen</span>
+          Good Morning, <span className="text-pneumo-primary">Dr. Mubeen</span>
         </h1>
         <p className="text-slate-500 dark:text-slate-400 font-medium">Ready to review today's pneumonia diagnostic cases.</p>
       </div>
