@@ -1,1 +1,55 @@
+services:
 
+  frontend:
+    build:
+      context: ./frontend
+
+    ports: 
+      - "3000:3000"
+
+    depends_on:
+      - backend
+
+    environment:
+      NEXT_PUBLIC_API_URL: https://backend:8000
+
+  backend:
+    build:
+      context: ./backend
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - db
+      - ml-services
+
+    environment:
+      DATABASE_URL: postgresql://postgres:password@db:5432/appdb
+      ML_SERVICE_URL: http://ml-services:5000
+
+  ml-service:
+    build:
+      context: ./ml-service
+
+    ports:
+     - "5000:5000"
+
+    db:
+      image: postgres:16
+
+      restart: always
+
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: password
+        POSTGRES_DB: appdb
+
+      volumes:
+        - postgres_data:/var/lib/postgresql/data 
+
+      ports:
+        - "5432 : 5432"
+
+volumes:
+  postgres_data:
