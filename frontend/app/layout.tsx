@@ -2,6 +2,7 @@ import React, { ViewTransition } from "react"
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import { NavigationGuard } from '@/components/navigation-guard'
+import { Providers } from '@/components/providers'
 
 import './globals.css'
 
@@ -28,12 +29,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 overflow-x-hidden">
-        <ViewTransition>
-          <NavigationGuard />
-          {children}
-        </ViewTransition>
+        <Providers>
+          <ViewTransition>
+            <NavigationGuard />
+            {children}
+          </ViewTransition>
+        </Providers>
       </body>
     </html>
   )
