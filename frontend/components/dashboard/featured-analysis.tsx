@@ -2,16 +2,16 @@
 
 export function FeaturedAnalysis() {
   return (
-    <div className="lg:col-span-6 lg:row-span-2 bento-card p-8 rounded-xl relative overflow-hidden group bg-white/70 dark:bg-slate-800/50 backdrop-blur-xl border border-pneumo-primary/10 dark:border-slate-700/50">
+    <div className="lg:col-span-6 lg:row-span-2 bento-card p-8 rounded-3xl relative overflow-hidden group glass-panel border border-slate-200/60 dark:border-slate-800/60">
       <div className="relative z-10 h-full flex flex-col">
         <div className="flex items-center justify-between mb-6">
           <span className="bg-pneumo-primary/10 text-pneumo-primary text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">AI Heatmap Focus</span>
           <button className="text-slate-400 hover:text-pneumo-primary transition-colors">
-            <span className="material-icons">fullscreen</span>
+            <span className="material-icons-round">fullscreen</span>
           </button>
         </div>
         <div className="flex-1 flex gap-6">
-          <div className="w-1/2 rounded-lg overflow-hidden relative border border-slate-200 dark:border-slate-800">
+          <div className="w-1/2 rounded-2xl overflow-hidden relative border border-slate-200 dark:border-slate-800">
             <img 
               alt="Chest X-ray" 
               className="w-full h-full object-cover" 
@@ -27,7 +27,7 @@ export function FeaturedAnalysis() {
           <div className="w-1/2 flex flex-col justify-center">
             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Patient ID: #XR-8821</h3>
             <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">AI has detected consolidation in the lower right lobe with 92% confidence level. Immediate radiologist review required.</p>
-            <button className="w-full bg-pneumo-primary text-white py-3 rounded-lg font-bold shadow-lg shadow-pneumo-primary/25 hover:bg-pneumo-primary/90 transition-all text-sm">
+            <button className="w-full bg-pneumo-primary text-white py-3 rounded-xl font-bold shadow-lg shadow-pneumo-primary/25 hover:bg-pneumo-primary/90 transition-all text-sm">
               Full Diagnosis
             </button>
           </div>

@@ -24,19 +24,14 @@ export default function DashboardPage() {
           {/* Stat Cards */}
           <StatCard 
             icon="analytics"
-            iconBgColor="bg-blue-50 dark:bg-blue-900/20"
-            iconColor="text-pneumo-primary"
             label="Total Scans Analyzed"
             value="1,284"
             trend="+12%"
-            trendColor="emerald"
             colSpan="lg:col-span-3"
           />
           
           <StatCard 
             icon="psychology"
-            iconBgColor="bg-purple-50 dark:bg-purple-900/20"
-            iconColor="text-purple-600"
             label="AI Detection Avg."
             value="99.4%"
             colSpan="lg:col-span-3"
@@ -48,8 +43,6 @@ export default function DashboardPage() {
           {/* More Stat Cards */}
           <StatCard 
             icon="pending_actions"
-            iconBgColor="bg-amber-50 dark:bg-amber-900/20"
-            iconColor="text-amber-600"
             label="Pending Reviews"
             value="14 Cases"
             colSpan="lg:col-span-3"
@@ -57,8 +50,6 @@ export default function DashboardPage() {
           
           <StatCard 
             icon="task_alt"
-            iconBgColor="bg-emerald-50 dark:bg-emerald-900/20"
-            iconColor="text-emerald-600"
             label="Weekly Completion"
             value="88%"
             colSpan="lg:col-span-3"
