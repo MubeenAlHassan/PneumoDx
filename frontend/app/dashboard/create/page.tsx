@@ -29,30 +29,30 @@ export default function CreatePage() {
               <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Patient Record</h2>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Patient Name</label>
-                  <input className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm" placeholder="Enter full name" />
+                  <label htmlFor="create-patient-name" className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Patient Name</label>
+                  <input id="create-patient-name" name="patientName" className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm" placeholder="Enter full name" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Patient ID</label>
-                  <input className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm" placeholder="e.g. PN-2026-1004" />
+                  <label htmlFor="create-patient-id" className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Patient ID</label>
+                  <input id="create-patient-id" name="patientId" className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm" placeholder="e.g. PN-2026-1004" />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Age</label>
-                    <input className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm" placeholder="Age" />
+                    <label htmlFor="create-patient-age" className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Age</label>
+                    <input id="create-patient-age" name="age" type="number" min={0} className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm" placeholder="Age" />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Gender</label>
-                    <select className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm">
-                      <option>Male</option>
-                      <option>Female</option>
-                      <option>Other</option>
+                    <label htmlFor="create-patient-gender" className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Gender</label>
+                    <select id="create-patient-gender" name="gender" className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm">
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
                     </select>
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Clinical Notes</label>
-                  <textarea className="w-full min-h-28 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 py-3 text-sm resize-none" placeholder="Symptoms, history, and observations..." />
+                  <label htmlFor="create-clinical-notes" className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Clinical Notes</label>
+                  <textarea id="create-clinical-notes" name="clinicalNotes" className="w-full min-h-28 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 py-3 text-sm resize-none" placeholder="Symptoms, history, and observations..." />
                 </div>
               </div>
             </section>
@@ -60,32 +60,32 @@ export default function CreatePage() {
             <section className="p-6 rounded-3xl glass-panel border border-slate-200/60 dark:border-slate-800/60">
               <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">X-ray Upload</h2>
               <div className="space-y-4">
-                <label className="block rounded-2xl border border-dashed border-pneumo-primary/40 bg-pneumo-primary/5 p-8 text-center cursor-pointer hover:bg-pneumo-primary/10 transition-colors">
+                <label htmlFor="create-xray-upload" className="block rounded-2xl border border-dashed border-pneumo-primary/40 bg-pneumo-primary/5 p-8 text-center cursor-pointer hover:bg-pneumo-primary/10 transition-colors">
                   <span className="inline-flex h-12 w-12 rounded-xl bg-white dark:bg-slate-900 items-center justify-center text-pneumo-primary mb-4">
-                    <span className="material-icons-round">cloud_upload</span>
+                    <span className="material-icons-round" aria-hidden="true">cloud_upload</span>
                   </span>
                   <p className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1">Drop X-ray image here or click to upload</p>
                   <p className="text-xs text-slate-500">Supported: PNG, JPG, DICOM (max 20MB)</p>
-                  <input type="file" accept="image/*,.dcm" className="hidden" />
+                  <input id="create-xray-upload" name="xray" type="file" accept="image/*,.dcm" className="sr-only" />
                 </label>
 
                 <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/40 dark:bg-slate-900/30 p-4">
                   <p className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">Analysis Options</p>
-                  <div className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
-                    <label className="min-h-14 flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 cursor-pointer">
-                      <span className="font-medium text-slate-700 dark:text-slate-200">Run pneumonia severity score</span>
+                  <div className="space-y-3 text-sm text-slate-600 dark:text-slate-300" role="group" aria-label="Analysis options">
+                    <label htmlFor="create-severity-score" className="min-h-14 flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 cursor-pointer">
+                      <span id="create-severity-score-label" className="font-medium text-slate-700 dark:text-slate-200">Run pneumonia severity score</span>
                       <span className="relative inline-flex items-center">
-                        <input defaultChecked type="checkbox" className="peer sr-only" />
-                        <span className="h-7 w-12 rounded-full bg-slate-300/80 dark:bg-slate-700 transition-colors peer-checked:bg-pneumo-primary" />
-                        <span className="absolute left-1 h-5 w-5 rounded-full bg-white shadow transition-transform peer-checked:translate-x-5" />
+                        <input id="create-severity-score" defaultChecked type="checkbox" role="switch" aria-labelledby="create-severity-score-label" className="peer sr-only" />
+                        <span className="h-7 w-12 rounded-full bg-slate-300/80 dark:bg-slate-700 transition-colors peer-checked:bg-pneumo-primary peer-focus-visible:ring-2 peer-focus-visible:ring-pneumo-primary/50" aria-hidden="true" />
+                        <span className="absolute left-1 h-5 w-5 rounded-full bg-white shadow transition-transform peer-checked:translate-x-5 pointer-events-none" aria-hidden="true" />
                       </span>
                     </label>
-                    <label className="min-h-14 flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 cursor-pointer">
-                      <span className="font-medium text-slate-700 dark:text-slate-200">Generate heatmap explanation</span>
+                    <label htmlFor="create-heatmap" className="min-h-14 flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 cursor-pointer">
+                      <span id="create-heatmap-label" className="font-medium text-slate-700 dark:text-slate-200">Generate heatmap explanation</span>
                       <span className="relative inline-flex items-center">
-                        <input defaultChecked type="checkbox" className="peer sr-only" />
-                        <span className="h-7 w-12 rounded-full bg-slate-300/80 dark:bg-slate-700 transition-colors peer-checked:bg-pneumo-primary" />
-                        <span className="absolute left-1 h-5 w-5 rounded-full bg-white shadow transition-transform peer-checked:translate-x-5" />
+                        <input id="create-heatmap" defaultChecked type="checkbox" role="switch" aria-labelledby="create-heatmap-label" className="peer sr-only" />
+                        <span className="h-7 w-12 rounded-full bg-slate-300/80 dark:bg-slate-700 transition-colors peer-checked:bg-pneumo-primary peer-focus-visible:ring-2 peer-focus-visible:ring-pneumo-primary/50" aria-hidden="true" />
+                        <span className="absolute left-1 h-5 w-5 rounded-full bg-white shadow transition-transform peer-checked:translate-x-5 pointer-events-none" aria-hidden="true" />
                       </span>
                     </label>
                   </div>

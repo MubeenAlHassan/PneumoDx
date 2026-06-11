@@ -123,6 +123,15 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    @apply outline-none ring-2 ring-pneumo-primary/50 ring-offset-2 ring-offset-background;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
