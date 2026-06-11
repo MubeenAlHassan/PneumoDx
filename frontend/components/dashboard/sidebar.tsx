@@ -6,15 +6,13 @@ import { usePathname } from 'next/navigation'
 export function Sidebar() {
   const pathname = usePathname()
   const navItems = [
+    { href: '/dashboard/create', icon: 'add_box', title: 'Create' },
     { href: '/dashboard', icon: 'dashboard', title: 'Dashboard' },
     { href: '/dashboard/records', icon: 'folder_open', title: 'Records' },
   ]
 
   return (
     <aside className="w-20 lg:w-24 flex flex-col items-center py-8 glass-panel border-r border-slate-200/60 dark:border-slate-800/60 z-10 fixed left-0 h-screen overflow-hidden">
-      <div className="w-12 h-12 bg-pneumo-primary rounded-2xl flex items-center justify-center mb-12 shadow-lg shadow-pneumo-primary/20">
-        <span className="material-icons-round text-white">insights</span>
-      </div>
       <nav className="flex flex-col gap-8 flex-1">
         {navItems.map((item) => {
           const isActive = pathname === item.href
