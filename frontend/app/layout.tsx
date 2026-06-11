@@ -1,7 +1,7 @@
 import React, { ViewTransition } from "react"
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
-import { Navigation } from '@/components/navigation'
+import { NavigationGuard } from '@/components/navigation-guard'
 
 import './globals.css'
 
@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <body className="font-sans antialiased bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 overflow-x-hidden">
         <ViewTransition>
-          <Navigation />
+          <NavigationGuard />
           {children}
         </ViewTransition>
       </body>
