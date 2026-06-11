@@ -114,7 +114,9 @@ export function PatientQueue() {
                   </span>
                 </td>
                 <td className="px-6 py-3.5 text-right">
-                  <button className="material-icons-round text-slate-300 group-hover:text-pneumo-primary transition-colors">chevron_right</button>
+                  <button type="button" aria-label={`View case for ${patient.name}`} className="text-slate-300 group-hover:text-pneumo-primary transition-colors rounded-md p-1">
+                    <span className="material-icons-round" aria-hidden="true">chevron_right</span>
+                  </button>
                 </td>
               </tr>
             ))}

@@ -6,8 +6,8 @@ export function FeaturedAnalysis() {
       <div className="relative z-10 h-full flex flex-col">
         <div className="flex items-center justify-between mb-6">
           <span className="bg-pneumo-primary/10 text-pneumo-primary text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">AI Heatmap Focus</span>
-          <button className="text-slate-400 hover:text-pneumo-primary transition-colors">
-            <span className="material-icons-round">fullscreen</span>
+          <button type="button" aria-label="View analysis in fullscreen" className="text-slate-400 hover:text-pneumo-primary transition-colors rounded-md p-1">
+            <span className="material-icons-round" aria-hidden="true">fullscreen</span>
           </button>
         </div>
         <div className="flex-1 flex gap-6">
