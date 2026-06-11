@@ -6,6 +6,7 @@ import { Workflow } from '@/components/workflow'
 import { CTA } from '@/components/cta'
 import { Footer } from '@/components/footer'
 import { BackgroundShapes } from '@/components/background-shapes'
+import { LandingContentSections } from '@/components/landing-content-sections'
 
 export default function Page() {
   return (
@@ -17,6 +18,7 @@ export default function Page() {
       <Features />
       <Workflow />
       <CTA />
+      <LandingContentSections />
       <Footer />
     </div>
   )
