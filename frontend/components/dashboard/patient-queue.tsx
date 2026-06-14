@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 
 interface Patient {
   id: string
@@ -10,6 +11,7 @@ interface Patient {
   scanTime: string
   probability: number
   probabilityColor: string
+  aiResult: 'Detected' | 'Suspected' | 'Clear'
   status: string
   statusColor: string
 }
@@ -22,9 +24,10 @@ const patients: Patient[] = [
     patientId: '#PN-2204',
     scanTime: '10:24 AM',
     probability: 94,
-    probabilityColor: 'bg-red-500',
+    probabilityColor: 'bg-[#EF4444]',
+    aiResult: 'Detected',
     status: 'Urgent',
-    statusColor: 'bg-red-100 dark:bg-red-500/10 text-red-600'
+    statusColor: 'badge-flagged'
   },
   {
     id: '2',
@@ -33,9 +36,10 @@ const patients: Patient[] = [
     patientId: '#PN-2205',
     scanTime: '09:15 AM',
     probability: 42,
-    probabilityColor: 'bg-pneumo-primary',
+    probabilityColor: 'bg-[#F59E0B]',
+    aiResult: 'Suspected',
     status: 'Stable',
-    statusColor: 'bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600'
+    statusColor: 'badge-ai-ready'
   },
   {
     id: '3',
@@ -44,9 +48,10 @@ const patients: Patient[] = [
     patientId: '#PN-2206',
     scanTime: '08:45 AM',
     probability: 67,
-    probabilityColor: 'bg-amber-500',
+    probabilityColor: 'bg-[#10B981]',
+    aiResult: 'Clear',
     status: 'Moderate',
-    statusColor: 'bg-amber-100 dark:bg-amber-500/10 text-amber-600'
+    statusColor: 'badge-in-review'
   },
 ]
 
@@ -54,19 +59,19 @@ export function PatientQueue() {
   const [activeTab, setActiveTab] = useState('all')
 
   return (
-    <div className="lg:col-span-8 bento-card rounded-3xl overflow-hidden flex flex-col glass-panel border border-slate-200/60 dark:border-slate-800/60">
-      <div className="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white">Active Patient Queue</h3>
+    <div className="lg:col-span-8 rounded-md overflow-hidden flex flex-col bg-[#FFFFFF] border border-[#E2E8F0]">
+      <div className="p-6 border-b border-[#E2E8F0] flex justify-between items-center">
+        <h3 className="text-[18px] font-semibold text-[#0F172A]">Cases Requiring Your Attention</h3>
         <div className="flex gap-2">
           <button 
             onClick={() => setActiveTab('all')}
-            className={`h-8 text-xs font-bold px-3 rounded-full transition-all ${activeTab === 'all' ? 'bg-pneumo-primary/10 text-pneumo-primary' : 'text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
+            className={`h-8 text-xs font-medium px-3 rounded-full transition-all ${activeTab === 'all' ? 'bg-[#EFF6FF] text-[#2563EB] border border-[#2563EB]' : 'text-[#64748B] hover:bg-[#F1F5F9]'}`}
           >
             All Cases
           </button>
           <button 
             onClick={() => setActiveTab('urgent')}
-            className={`h-8 text-xs font-bold px-3 rounded-full transition-all ${activeTab === 'urgent' ? 'bg-pneumo-primary/10 text-pneumo-primary' : 'text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
+            className={`h-8 text-xs font-medium px-3 rounded-full transition-all ${activeTab === 'urgent' ? 'bg-[#EFF6FF] text-[#2563EB] border border-[#2563EB]' : 'text-[#64748B] hover:bg-[#F1F5F9]'}`}
           >
             Urgent
           </button>
@@ -75,48 +80,46 @@ export function PatientQueue() {
       <div className="flex-1 overflow-y-auto">
         <table className="w-full text-left">
           <thead>
-            <tr className="text-[10px] uppercase tracking-widest text-slate-400 border-b border-slate-50 dark:border-slate-800">
-              <th className="px-6 py-3.5 font-bold">Patient & ID</th>
-              <th className="px-6 py-3.5 font-bold text-center">Scan Time</th>
-              <th className="px-6 py-3.5 font-bold">AI Probability</th>
-              <th className="px-6 py-3.5 font-bold">Status</th>
-              <th className="px-6 py-3.5 font-bold"></th>
+            <tr className="label-clinical text-[#64748B] border-b border-[#E2E8F0]">
+              <th className="px-6 py-3 font-medium">Patient</th>
+              <th className="px-6 py-3 font-medium text-center">Scan Time</th>
+              <th className="px-6 py-3 font-medium">AI Result</th>
+              <th className="px-6 py-3 font-medium">Status</th>
+              <th className="px-6 py-3 font-medium"></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-50 dark:divide-slate-800/50">
+          <tbody className="divide-y divide-[#E2E8F0]">
             {patients.map((patient) => (
-              <tr key={patient.id} className="hover:bg-pneumo-primary/5 transition-colors group">
+              <tr key={patient.id} className="hover:bg-[#F1F5F9] transition-colors group">
                 <td className="px-6 py-3.5">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-pneumo-primary font-bold text-xs">
+                    <div className="w-8 h-8 rounded-sm bg-[#F1F5F9] flex items-center justify-center text-[#2563EB] font-bold text-xs border border-[#E2E8F0]">
                       {patient.initials}
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-slate-900 dark:text-white">{patient.name}</p>
-                      <p className="text-xs text-slate-500">ID: {patient.patientId}</p>
+                      <p className="text-[14px] font-medium text-[#0F172A]">{patient.name}</p>
+                      <p className="mono-data text-[#64748B]">{patient.patientId}</p>
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-3.5 text-center text-sm text-slate-500">{patient.scanTime}</td>
+                <td className="px-6 py-3.5 text-center mono-data text-[#64748B]">{patient.scanTime}</td>
                 <td className="px-6 py-3.5">
                   <div className="flex items-center gap-2">
-                    <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden max-w-[100px]">
-                      <div className={`${patient.probabilityColor} h-full`} style={{ width: `${patient.probability}%` }}></div>
-                    </div>
-                    <span className={`text-xs font-bold ${patient.probabilityColor === 'bg-pneumo-primary' ? 'text-pneumo-primary' : ''}`}>
-                      {patient.probability}%
-                    </span>
+                    <span className={`w-2 h-2 rounded-full ${patient.probabilityColor}`} />
+                    <span className="text-[14px] text-[#0F172A]">{patient.aiResult}</span>
+                    <span className="mono-data text-[#64748B]">{patient.probability}%</span>
                   </div>
                 </td>
                 <td className="px-6 py-3.5">
-                  <span className={`text-[10px] font-bold uppercase px-2.5 py-1 rounded-full ${patient.statusColor}`}>
+                  <span className={`badge-status ${patient.statusColor}`}>
+                    <span aria-hidden="true">●</span>
                     {patient.status}
                   </span>
                 </td>
                 <td className="px-6 py-3.5 text-right">
-                  <button type="button" aria-label={`View case for ${patient.name}`} className="text-slate-300 group-hover:text-pneumo-primary transition-colors rounded-md p-1">
+                  <Link href="/dashboard/analysis" aria-label={`Review case for ${patient.name}`} className="inline-flex text-[#64748B] group-hover:text-[#2563EB] transition-colors rounded-sm p-1">
                     <span className="material-icons-round" aria-hidden="true">chevron_right</span>
-                  </button>
+                  </Link>
                 </td>
               </tr>
             ))}

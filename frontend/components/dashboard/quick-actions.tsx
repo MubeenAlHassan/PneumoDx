@@ -4,44 +4,36 @@ import Link from 'next/link'
 
 export function QuickActions() {
   return (
-    <div className="lg:col-span-4 bento-card p-6 rounded-3xl glass-panel border border-slate-200/60 dark:border-slate-800/60">
-      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Quick Actions</h3>
+    <div className="lg:col-span-4 p-6 rounded-md bg-[#FFFFFF] border border-[#E2E8F0]">
+      <h3 className="text-[18px] font-semibold text-[#0F172A] mb-6">Quick Actions</h3>
       <div className="space-y-4">
-        <button className="w-full h-16 flex items-center justify-between px-4 bg-pneumo-primary/5 hover:bg-pneumo-primary/10 rounded-2xl transition-all group">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center text-pneumo-primary shadow-sm">
-              <span className="material-icons-round">cloud_upload</span>
+        {[
+          { href: '/dashboard/upload', icon: 'cloud_upload', label: 'Upload New Scan' },
+          { href: '/dashboard/report', icon: 'description', label: 'Generate Report' },
+          { href: '/dashboard/records', icon: 'folder_open', label: 'Open Records' },
+        ].map((action) => (
+          <Link
+            key={action.href}
+            href={action.href}
+            className="w-full h-12 flex items-center justify-between px-4 bg-[#F1F5F9] hover:bg-[#E2E8F0] rounded-sm transition-all group border border-[#E2E8F0]"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-7 h-7 rounded-sm bg-[#EFF6FF] flex items-center justify-center text-[#2563EB] border border-[#E2E8F0]">
+                <span className="material-icons-round" aria-hidden="true">{action.icon}</span>
+              </div>
+              <span className="text-[14px] font-medium text-[#0F172A]">{action.label}</span>
             </div>
-            <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Upload New Scan</span>
-          </div>
-          <span className="material-icons-round text-slate-300 group-hover:text-pneumo-primary transition-transform group-hover:translate-x-1">arrow_forward</span>
-        </button>
-        <button className="w-full h-16 flex items-center justify-between px-4 bg-pneumo-primary/5 hover:bg-pneumo-primary/10 rounded-2xl transition-all group">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center text-pneumo-primary shadow-sm">
-              <span className="material-icons-round">description</span>
-            </div>
-            <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Generate Report</span>
-          </div>
-          <span className="material-icons-round text-slate-300 group-hover:text-pneumo-primary transition-transform group-hover:translate-x-1">arrow_forward</span>
-        </button>
-        <Link href="/dashboard/records" className="w-full h-16 flex items-center justify-between px-4 bg-pneumo-primary/5 hover:bg-pneumo-primary/10 rounded-2xl transition-all group">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center text-pneumo-primary shadow-sm">
-              <span className="material-icons-round">send</span>
-            </div>
-            <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Open Records</span>
-          </div>
-          <span className="material-icons-round text-slate-300 group-hover:text-pneumo-primary transition-transform group-hover:translate-x-1">arrow_forward</span>
-        </Link>
+            <span className="material-icons-round text-[#64748B] group-hover:text-[#2563EB] transition-transform group-hover:translate-x-1" aria-hidden="true">arrow_forward</span>
+          </Link>
+        ))}
       </div>
-      <div className="mt-8 p-6 bg-gradient-to-br from-pneumo-primary to-blue-500 rounded-2xl text-white relative overflow-hidden">
+      <div className="mt-8 p-6 rounded-lg text-white relative overflow-hidden bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] shadow-blue-glow">
         <div className="relative z-10">
-          <h4 className="font-bold mb-2">Platform Update</h4>
-          <p className="text-xs text-white/80 leading-relaxed mb-4">v2.4.0 is now live. Enhanced fluid detection models for pediatric cases.</p>
-          <a className="text-xs font-bold underline hover:text-white/90 transition-colors" href="#">Read what's new</a>
+          <h4 className="text-[18px] font-semibold mb-2 text-white">Platform Update</h4>
+          <p className="text-[14px] text-white/80 leading-relaxed mb-4">v2.4.0 is now live. Enhanced fluid detection models for pediatric cases.</p>
+          <a className="text-[11px] uppercase tracking-[0.05em] font-semibold text-white hover:underline transition-colors" href="#">Read Release Notes</a>
         </div>
-        <span className="material-icons-round absolute -bottom-4 -right-4 text-8xl text-white/10 rotate-12">auto_awesome</span>
+        <span className="material-icons-round absolute -bottom-4 -right-4 text-8xl text-white/15 rotate-12" aria-hidden="true">auto_awesome</span>
       </div>
     </div>
   )

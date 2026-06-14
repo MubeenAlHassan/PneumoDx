@@ -1,29 +1,31 @@
 import type { Metadata } from 'next'
-import { LeftBackgroundShapes } from '@/components/auth/left-background-shapes'
-import { RightBackgroundShapes } from '@/components/auth/right-background-shapes'
-import { Sidebar } from '@/components/auth/sidebar'
+import { ViewTransition } from 'react'
+import { AuthAside } from '@/components/auth/auth-aside'
 import { LoginForm } from '@/components/auth/login-form'
 
 export const metadata: Metadata = {
-  title: 'PneumoDx - Doctor Login',
-  description: 'Secure login for medical professionals to access PneumoAI diagnostic dashboard.',
+  title: 'Sign In | PneumoScan',
+  description: 'Secure login for medical professionals to access the PneumoScan diagnostic platform.',
 }
 
 export default function LoginPage() {
   return (
-    <div className="relative">
-      <LeftBackgroundShapes />
-      <RightBackgroundShapes />
-      <main className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 md:p-12">
-        <section className='w-full max-w-6xl mt-28'>
-        {/* Main Bento Box Login Card */}
-        <div className="grid lg:grid-flow-col grid-cols-5 gap-8 items-start">
-          <Sidebar />
+    <ViewTransition>
+      <div className="grid min-h-screen lg:grid-cols-2 bg-[#F8FAFC]">
+        <AuthAside
+          heading="Certified diagnostics with"
+          accent="physician authority."
+          description="AI-assisted chest X-ray analysis with doctor sign-off and hospital co-certification — built for clinical accountability."
+          points={[
+            { icon: 'verified_user', title: 'HIPAA-aligned', copy: 'Encrypted storage and full audit trails.' },
+            { icon: 'bolt', title: 'Rapid analysis', copy: 'Confidence scoring in 8–15 seconds.' },
+            { icon: 'fact_check', title: 'Dual sign-off', copy: 'Doctor signature + hospital certification.' },
+          ]}
+        />
+        <div className="flex items-center justify-center p-6 sm:p-10">
           <LoginForm />
         </div>
-        </section>
-
-      </main>
-    </div>
+      </div>
+    </ViewTransition>
   )
 }

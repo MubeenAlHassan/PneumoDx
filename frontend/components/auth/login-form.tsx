@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
-  const [rememberMe, setRememberMe] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
@@ -20,105 +19,93 @@ export function LoginForm() {
   }
 
   return (
-    <div className="md:col-span-3">
-      <div className="glass-panel rounded-xl p-10 shadow-xl shadow-pneumo-primary/5">
-        <div className="mb-8">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-pneumo-primary mb-4 flex items-center gap-2 font-display">
-            <span className="material-icons-round text-sm" aria-hidden="true">medical_services</span>
-            Doctor Login
-          </h2>
-          <p className="text-slate-500 dark:text-slate-400 text-sm">Please enter your medical credentials to continue.</p>
-        </div>
-        <form onSubmit={handleSubmit} className="space-y-6" aria-label="Doctor login form">
-          <div className="space-y-2">
-            <label htmlFor="login-email" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">
-              Medical ID / Email
+    <div className="w-full max-w-md">
+      <div className="card-panel p-8">
+        <h2 className="text-[20px] font-semibold text-[#0F172A]">Sign in to your account</h2>
+        <div className="mt-2 mb-7 h-px w-28 bg-[#E2E8F0]" aria-hidden="true" />
+
+        <form onSubmit={handleSubmit} className="space-y-5" aria-label="Sign in form">
+          <div>
+            <label htmlFor="login-email" className="field-label">
+              Email / Medical ID
             </label>
-            <div className="relative group">
-              <span className="material-icons-round absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-pneumo-primary transition-colors" aria-hidden="true">
-                alternate_email
-              </span>
-              <input
-                id="login-email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                placeholder="dr.mubeen@hospital.org"
-                className="w-full pl-12 pr-4 py-4 bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg focus:ring-2 focus:ring-pneumo-primary/20 focus:border-pneumo-primary outline-none transition-all placeholder:text-slate-400 text-slate-900 dark:text-white"
-              />
-            </div>
+            <input
+              id="login-email"
+              name="email"
+              type="text"
+              autoComplete="username"
+              required
+              placeholder="dr.ahmed@citymed.pk"
+              className="input-field"
+            />
           </div>
 
-          <div className="space-y-2">
-            <div className="flex justify-between items-center px-1">
-              <label htmlFor="login-password" className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                Password
-              </label>
-              <Link href="#" className="text-xs font-semibold text-pneumo-primary hover:underline transition-all">
-                Forgot?
-              </Link>
-            </div>
-            <div className="relative group">
-              <span className="material-icons-round absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-pneumo-primary transition-colors" aria-hidden="true">
-                lock_open
-              </span>
+          <div>
+            <label htmlFor="login-password" className="field-label">
+              Password
+            </label>
+            <div className="relative">
               <input
                 id="login-password"
                 name="password"
                 type={showPassword ? 'text' : 'password'}
                 autoComplete="current-password"
                 required
-                placeholder="••••••••"
-                className="w-full pl-12 pr-12 py-4 bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg focus:ring-2 focus:ring-pneumo-primary/20 focus:border-pneumo-primary outline-none transition-all placeholder:text-slate-400 text-slate-900 dark:text-white"
+                placeholder="••••••••••••"
+                className="input-field pr-16"
               />
               <button
                 type="button"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowPassword((v) => !v)}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
                 aria-pressed={showPassword}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors rounded-md"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[12px] font-medium uppercase tracking-[0.05em] text-[#2563EB] hover:underline rounded-sm"
               >
-                <span className="material-icons-round text-xl" aria-hidden="true">
-                  {showPassword ? 'visibility_off' : 'visibility'}
-                </span>
+                {showPassword ? 'Hide' : 'Show'}
               </button>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 px-1">
-            <input
-              type="checkbox"
-              id="remember"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
-              className="w-4 h-4 rounded border-slate-300 text-pneumo-primary focus:ring-pneumo-primary cursor-pointer"
-            />
-            <label htmlFor="remember" className="text-sm text-slate-600 dark:text-slate-400 cursor-pointer">
-              Trust this workstation for 30 days
-            </label>
+          <button type="submit" disabled={isLoading} aria-busy={isLoading} className="btn-primary w-full">
+            {isLoading ? 'Signing in…' : 'Sign In to PneumoScan'}
+          </button>
+
+          <div className="flex items-center justify-between text-[13px]">
+            <Link href="#" className="btn-ghost">
+              Forgot password?
+            </Link>
+            <Link href="/register-hospital" className="btn-ghost">
+              Register hospital
+              <span className="material-icons-round text-[16px]" aria-hidden="true">
+                arrow_forward
+              </span>
+            </Link>
+          </div>
+
+          <div className="flex items-center gap-3 py-1">
+            <span className="h-px flex-1 bg-[#E2E8F0]" aria-hidden="true" />
+            <span className="mono-data text-[#64748B]">OR</span>
+            <span className="h-px flex-1 bg-[#E2E8F0]" aria-hidden="true" />
           </div>
 
           <button
-            type="submit"
-            disabled={isLoading}
-            aria-busy={isLoading}
-            className="w-full bg-gradient-to-r from-pneumo-primary to-blue-500 hover:to-blue-600 disabled:opacity-70 disabled:cursor-not-allowed text-white font-bold py-4 rounded-lg shadow-lg shadow-pneumo-primary/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+            type="button"
+            className="flex w-full items-center justify-center gap-2 h-11 rounded-sm border border-[#E2E8F0] bg-transparent text-[14px] font-medium text-[#0F172A] transition-colors hover:border-[#2563EB]"
           >
-            <span>{isLoading ? 'Signing in...' : 'Sign In to Dashboard'}</span>
-            {!isLoading && <span className="material-icons-round" aria-hidden="true">arrow_forward</span>}
+            <span className="material-icons-round text-[18px]" aria-hidden="true">
+              vpn_key
+            </span>
+            Sign in with Hospital SSO
           </button>
         </form>
-
-        <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800 text-center">
-          <p className="text-sm text-slate-500 dark:text-slate-400">
-            New to the platform?{' '}
-            <Link href="/signup" className="text-pneumo-primary hover:underline gap-1">
-              Signup
-            </Link>
-          </p>
-        </div>
       </div>
+
+      <p className="mt-6 flex items-center justify-center gap-2 border-t border-[#E2E8F0] pt-6 text-[12px] text-[#64748B]">
+        <span className="material-icons-round text-[16px]" aria-hidden="true">
+          lock
+        </span>
+        HIPAA-compliant · TLS 1.3 encrypted · Audit-logged
+      </p>
     </div>
   )
 }

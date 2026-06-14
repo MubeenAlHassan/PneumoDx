@@ -29,7 +29,7 @@ export function Workflow() {
   ]
 
   return (
-    <section className="bg-white dark:bg-slate-900/50 py-32 px-6">
+    <section id="workflow" className="scroll-mt-28 bg-white py-32 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-24">
           <h2 className="text-4xl font-medium mb-4">
@@ -44,9 +44,9 @@ export function Workflow() {
             <path d="M0 1H1000" stroke="url(#paint0_linear)" strokeDasharray="10 10" />
             <defs>
               <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear" x1="0" x2="1000" y1="0.5" y2="0.5">
-                <stop stopColor="#13a4ec" stopOpacity="0" />
-                <stop offset="0.5" stopColor="#13a4ec" />
-                <stop offset="1" stopColor="#13a4ec" stopOpacity="0" />
+                <stop stopColor="#2563EB" stopOpacity="0" />
+                <stop offset="0.5" stopColor="#2563EB" />
+                <stop offset="1" stopColor="#2563EB" stopOpacity="0" />
               </linearGradient>
             </defs>
           </svg>

@@ -8,20 +8,20 @@ interface StatCardProps {
 
 export function StatCard({ icon, label, value, trend, colSpan = 'lg:col-span-3' }: StatCardProps) {
   return (
-    <div className={`${colSpan} bento-card p-6 rounded-3xl flex flex-col justify-between min-h-[170px] glass-panel border border-slate-200/60 dark:border-slate-800/60 hover:shadow-lg hover:shadow-pneumo-primary/10 transition-all`}>
+    <div className={`${colSpan} p-6 rounded-md flex flex-col justify-between min-h-[152px] bg-[#FFFFFF] border border-[#E2E8F0]`}>
       <div className="flex justify-between items-start mb-5">
-        <div className="h-11 w-11 bg-pneumo-primary/10 text-pneumo-primary rounded-xl flex items-center justify-center">
-          <span className="material-icons-round">{icon}</span>
+        <div className="h-10 w-10 bg-[#EFF6FF] text-[#2563EB] rounded-sm flex items-center justify-center border border-[#E2E8F0]">
+          <span className="material-icons-round" aria-hidden="true">{icon}</span>
         </div>
         {trend && (
-          <span className="text-[11px] font-bold text-pneumo-primary bg-pneumo-primary/10 px-2.5 py-1 rounded-full">
-            {trend}
+          <span className="badge-status badge-ai-ready">
+            <span aria-hidden="true">●</span> {trend}
           </span>
         )}
       </div>
       <div>
-        <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-2">{label}</p>
-        <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{value}</h2>
+        <p className="label-clinical text-[#64748B] mb-2">{label}</p>
+        <h2 className="text-[24px] font-semibold tracking-tight text-[#0F172A]">{value}</h2>
       </div>
     </div>
   )

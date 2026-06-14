@@ -1,27 +1,31 @@
 import type { Metadata } from 'next'
-import { RightBackgroundShapes } from '@/components/auth/right-background-shapes'
-import { LeftBackgroundShapes } from '@/components/auth/left-background-shapes'
-import { Sidebar } from '@/components/auth/sidebar'
+import { ViewTransition } from 'react'
+import { AuthAside } from '@/components/auth/auth-aside'
 import { SignupForm } from '@/components/auth/signup-form'
 
 export const metadata: Metadata = {
-  title: 'Sign Up | PneumaDx',
-  description: 'Create your professional account to access advanced pneumonia detection AI tools.',
+  title: 'Register Hospital | PneumoScan',
+  description: 'Create your professional account to access the PneumoScan pneumonia detection platform.',
 }
 
 export default function SignupPage() {
   return (
-    <div className="relative">
-      <LeftBackgroundShapes />
-      <RightBackgroundShapes />
-      <main className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 md:p-12">
-        <section className="w-full max-w-6xl mt-28">
-          <div className="grid lg:grid-cols-5 gap-8 items-start">
-            <Sidebar />
-            <SignupForm />
-          </div>
-        </section>
-      </main>
-    </div>
+    <ViewTransition>
+      <div className="grid min-h-screen lg:grid-cols-2 bg-[#F8FAFC]">
+        <AuthAside
+          heading="Join the next generation of"
+          accent="clinical AI diagnostics."
+          description="Register your hospital and doctors to centralise X-ray records, standardise reporting, and ensure tamper-evident audit trails."
+          points={[
+            { icon: 'workspace_premium', title: 'Certified reports', copy: 'Tamper-evident PDF generation.' },
+            { icon: 'groups', title: 'Role-based access', copy: 'Admin, doctor, radiologist, staff.' },
+            { icon: 'shield', title: 'Audit-ready', copy: 'Full activity logs for compliance.' },
+          ]}
+        />
+        <div className="flex items-center justify-center p-6 sm:p-10">
+          <SignupForm />
+        </div>
+      </div>
+    </ViewTransition>
   )
 }

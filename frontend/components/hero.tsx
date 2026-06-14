@@ -20,7 +20,7 @@ export function Hero() {
             Harnessing Convolutional neural network architectures to detect pneumonia indicators with 99.4% sensitivity. Empowers clinicians with real-time, explainable diagnostic insights.
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
-            <Link href="login" className="bg-pneumo-primary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-pneumo-primary/25 flex items-center gap-2 group hover:opacity-90 transition-opacity">
+            <Link href="/login" className="bg-pneumo-primary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-blue-glow flex items-center gap-2 group hover:bg-pneumo-primary-hover transition-colors">
               Get Started{' '}
               <span className="material-icons-round transition-transform group-hover:translate-x-1">
                 arrow_forward

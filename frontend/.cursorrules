@@ -1,0 +1,120 @@
+# PneumoScan Frontend — Cursor Rules
+
+Source of truth: `docs/pneumonia-detection-app-design.md`. When in doubt, read that file before changing UI, flows, or tokens.
+
+## Stack
+
+- Next.js App Router (`app/`), React, TypeScript, Tailwind CSS
+- Fonts: Inter (UI), IBM Plex Serif (report/display titles), JetBrains Mono (MRNs, timestamps)
+- Icons: `material-icons-round` only (never `material-icons`)
+- Route transitions: wrap page content in `<ViewTransition>` from `react`
+- Package manager: pnpm
+
+## Design principles
+
+- Premium clarity: calm, spacious, human — white surfaces on a mist canvas, soft depth, smooth motion
+- Trust signals: signatures, credentials, timestamps, and certification are first-class UI
+- Progressive disclosure: summary first, detail on demand
+- Zero-ambiguity CTAs: verb phrases like "Sign Report", "Upload & Run AI Analysis" — never bare "Submit" or "OK"
+- Clinical error states: say what failed and what to do next
+
+## Color palette — Clear Blue & White
+
+Use Tailwind tokens (`pneumo-*`, `clinical-*`) or shared CSS utilities — avoid one-off purple/dark hex values.
+
+| Token | Hex | Use |
+|---|---|---|
+| Canvas White | `#FFFFFF` | Cards, sidebar, panels (`pneumo-surface`) |
+| Mist | `#F8FAFC` | Page background (`pneumo-bg-light`) |
+| Cloud Border | `#E2E8F0` | Borders, dividers (`pneumo-border`) |
+| Primary Blue | `#2563EB` | Buttons, links, active nav (`pneumo-primary`) |
+| Blue Hover | `#1D4ED8` | Primary hover (`pneumo-primary-hover`) |
+| Sky Tint | `#EFF6FF` | Active/selected fills (`pneumo-sky`) |
+| Ink | `#0F172A` | Primary text (`pneumo-ink`, `pneumo-ghost`) |
+| Slate Muted | `#64748B` | Secondary text (`pneumo-muted`, `clinical-muted`) |
+| Emerald | `#10B981` | Clear / approved (`clinical-mint`) |
+| Amber | `#F59E0B` | Suspected / pending (`clinical-amber`) |
+| Red | `#EF4444` | Pneumonia detected / urgent only (`clinical-red`) |
+
+- Red is only for positive pneumonia findings and urgent flags — not generic validation errors
+- Auth hero panels and premium CTAs may use gradient `from-[#2563EB] to-[#1D4ED8]`
+- App theme is light; do not reintroduce the old dark purple palette
+
+## Typography
+
+- Page titles: 24px semibold Ink
+- Card headers: 18px semibold Ink
+- Body: 14px regular, line-height 1.6
+- Labels: `.label-clinical` — 11px uppercase, tracking 0.05em, Slate Muted
+- IDs / timestamps: `.mono-data` — JetBrains Mono 13px
+
+## Spacing, layout, elevation
+
+- Base unit: 4px; dashboard max-width 1280px; sidebar 240px fixed
+- Cards: `.card-panel` or `.premium-card` (Level 1 soft shadow)
+- Shadows: `shadow-soft-1`, `shadow-soft-2`, `shadow-blue-glow` from Tailwind config
+- Border radius: inputs 8px (`rounded-sm`), buttons/cards 12–16px (`rounded-md` / `rounded-lg`), pills `rounded-full`
+
+## Reuse these CSS utilities (globals.css)
+
+- Surfaces: `.card-panel`, `.premium-card`, `.glass-panel`
+- Forms: `.field-label`, `.input-field`
+- Buttons: `.btn-primary`, `.btn-secondary`, `.btn-danger`, `.btn-ghost`
+- Badges: `.badge-status` + `.badge-ai-ready | .badge-in-review | .badge-signed | .badge-certified | .badge-flagged`
+- AI chips: `.ai-result` + `.ai-detected | .ai-suspected | .ai-clear`
+- Prefer components `StatusBadge` and `AiResultBadge` from `components/dashboard/badges.tsx`
+
+Status badges and AI indicators must pair color with an icon — never color-only signalling.
+
+## Project structure
+
+```
+app/
+  page.tsx                    Landing
+  login/, signup/, register-hospital/
+  dashboard/                  Doctor shell
+    page.tsx                  Overview
+    patients/, create/, upload/, analysis/, report/, records/, settings/
+  dashboard/admin/            Hospital admin shell (Sidebar variant="admin")
+    page.tsx, cosign/, doctors/, audit/
+
+components/
+  navigation.tsx              Landing navbar (hidden on /dashboard, /login, /signup, /register-hospital via NavigationGuard)
+  auth/                       Login, signup, register-hospital, AuthAside
+  dashboard/
+    shell.tsx                 DashboardShell — use for all dashboard pages
+    sidebar.tsx               variant: "doctor" | "admin"
+    page-header.tsx           Eyebrow, title, back link, actions
+    badges.tsx                StatusBadge, AiResultBadge
+```
+
+## Implementation rules
+
+- New dashboard pages: wrap in `<ViewTransition>`, use `<DashboardShell>`, use `<PageHeader>`, prefer `.card-panel` sections
+- Do not show the landing `<Navigation />` on dashboard or auth routes — `NavigationGuard` handles this
+- Link CTAs to real routes (`/login`, `/register-hospital`, `/dashboard/upload`, etc.)
+- Forms: always `htmlFor`/`id`, meaningful `aria-*` on toggles and icon-only buttons
+- Focus: blue ring `#2563EB` / 4px glow on focus-visible (already in globals)
+- Keep diffs minimal; match existing naming, imports (`@/components/...`), and file patterns
+- Do not add dependencies or refactor unrelated code unless asked
+- Do not create git commits unless the user explicitly requests them
+
+## Screen reference (design doc §6)
+
+| Screen | Route |
+|---|---|
+| Login | `/login` |
+| Doctor register | `/signup` |
+| Register hospital | `/register-hospital` |
+| Doctor dashboard | `/dashboard` |
+| Patient list | `/dashboard/patients` |
+| Patient registration | `/dashboard/create` |
+| X-ray upload + processing | `/dashboard/upload` |
+| AI analysis results | `/dashboard/analysis` |
+| Report composition / sign-off | `/dashboard/report` |
+| Scan records | `/dashboard/records` |
+| Settings | `/dashboard/settings` |
+| Hospital admin overview | `/dashboard/admin` |
+| Co-sign | `/dashboard/admin/cosign` |
+| Doctor management | `/dashboard/admin/doctors` |
+| Audit log | `/dashboard/admin/audit` |

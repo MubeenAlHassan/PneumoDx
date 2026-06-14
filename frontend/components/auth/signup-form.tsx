@@ -2,8 +2,10 @@
 
 import Link from 'next/link'
 import React, { FormEvent, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export function SignupForm() {
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
     fullName: '',
@@ -16,7 +18,7 @@ export function SignupForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
     }))
@@ -24,187 +26,158 @@ export function SignupForm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
+    router.push('/dashboard')
   }
 
   return (
-    <div className="lg:col-span-3">
-      <form onSubmit={handleSubmit} className="grid grid-cols-12 gap-5" aria-label="Doctor registration form">
-        <div className="col-span-12 glass-panel rounded-xl p-6 shadow-xl shadow-signup-primary/5">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-pneumo-primary mb-4 flex items-center gap-2 font-display">
-            <span className="material-icons-round text-sm" aria-hidden="true">person</span>
-            Practitioner Identity
-          </h2>
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="signup-fullName" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 font-display">
-                Full Professional Name
-              </label>
-              <input
-                id="signup-fullName"
-                type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                autoComplete="name"
-                required
-                placeholder="Dr. Sarah Jenkins"
-                className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
-              />
-            </div>
-            <div>
-              <label htmlFor="signup-licenseId" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 font-display">
-                Medical License ID
-              </label>
-              <input
-                id="signup-licenseId"
-                type="text"
-                name="licenseId"
-                value={formData.licenseId}
-                onChange={handleChange}
-                required
-                placeholder="MD-123-456-789"
-                className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
-              />
-            </div>
+    <div className="w-full max-w-md">
+      <div className="card-panel p-8">
+        <h2 className="text-[20px] font-semibold text-[#0F172A]">Register your hospital account</h2>
+        <div className="mt-2 mb-7 h-px w-28 bg-[#E2E8F0]" aria-hidden="true" />
+
+        <form onSubmit={handleSubmit} className="space-y-5" aria-label="Hospital registration form">
+          <div>
+            <label htmlFor="signup-fullName" className="field-label">
+              Full Professional Name
+            </label>
+            <input
+              id="signup-fullName"
+              type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              autoComplete="name"
+              required
+              placeholder="Dr. Ahmed Raza"
+              className="input-field"
+            />
           </div>
 
-          <div className="mt-4">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-pneumo-primary mb-4 flex items-center gap-2 font-display">
-              <span className="material-icons-round text-sm" aria-hidden="true">apartment</span>
-              Workplace
-            </h2>
-            <div>
-              <label htmlFor="signup-hospital" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 font-display">
-                Primary Affiliation
-              </label>
-              <select
-                id="signup-hospital"
-                name="hospital"
-                value={formData.hospital}
+          <div>
+            <label htmlFor="signup-licenseId" className="field-label">
+              PMDC / Medical License No.
+            </label>
+            <input
+              id="signup-licenseId"
+              type="text"
+              name="licenseId"
+              value={formData.licenseId}
+              onChange={handleChange}
+              required
+              placeholder="PMDC-49281"
+              className="input-field"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="signup-hospital" className="field-label">
+              Hospital / Institution
+            </label>
+            <select
+              id="signup-hospital"
+              name="hospital"
+              value={formData.hospital}
+              onChange={handleChange}
+              required
+              className="input-field"
+            >
+              <option value="">Select hospital</option>
+              <option value="city-medical">City Medical Centre</option>
+              <option value="shifa">Shifa International</option>
+              <option value="aku">Aga Khan University Hospital</option>
+              <option value="pims">PIMS Islamabad</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="signup-email" className="field-label">
+              Work Email
+            </label>
+            <input
+              id="signup-email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              autoComplete="email"
+              required
+              placeholder="dr.ahmed@citymed.pk"
+              className="input-field"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="signup-password" className="field-label">
+              Password
+            </label>
+            <div className="relative">
+              <input
+                id="signup-password"
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={formData.password}
                 onChange={handleChange}
+                autoComplete="new-password"
                 required
-                className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
+                placeholder="••••••••••••"
+                className="input-field pr-16"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((v) => !v)}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                aria-pressed={showPassword}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[12px] font-medium uppercase tracking-[0.05em] text-[#2563EB] hover:underline rounded-sm"
               >
-                <option value="">Select Hospital</option>
-                <option value="mayo">Mayo Clinic</option>
-                <option value="cleveland">Cleveland Clinic</option>
-                <option value="hopkins">Johns Hopkins Hospital</option>
-                <option value="mgh">Massachusetts General Hospital</option>
-              </select>
-              <p className="text-xs text-slate-500 mt-2 leading-tight">
-                Can&apos;t find your hospital?{' '}
-                <a href="#" className="text-pneumo-primary hover:underline font-semibold">
-                  Register your institution.
-                </a>
-              </p>
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
             </div>
           </div>
 
-          <div className="mt-4">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-pneumo-primary mb-4 flex items-center gap-2 font-display">
-              <span className="material-icons-round text-sm" aria-hidden="true">lock</span>
-              Secure Credentials
-            </h2>
-            <div className="grid md:grid-cols-1 gap-4">
-              <div>
-                <label htmlFor="signup-email" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 font-display">
-                  Email Address
-                </label>
-                <div className="relative group">
-                  <span className="material-icons-round absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-pneumo-primary transition-colors" aria-hidden="true">
-                    alternate_email
-                  </span>
-                  <input
-                    id="signup-email"
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    autoComplete="email"
-                    required
-                    placeholder="sarah.j@hospital.org"
-                    className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg pl-11 px-4 py-3 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="signup-password" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 font-display">
-                  Password
-                </label>
-                <div className="relative group">
-                  <span className="material-icons-round absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-pneumo-primary transition-colors" aria-hidden="true">
-                    lock_open
-                  </span>
-                  <input
-                    id="signup-password"
-                    type={showPassword ? 'text' : 'password'}
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    autoComplete="new-password"
-                    required
-                    placeholder="••••••••"
-                    className="w-full bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg pl-12 px-4 py-3 focus:ring-2 focus:ring-signup-primary focus:border-transparent transition-all"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    aria-label={showPassword ? 'Hide password' : 'Show password'}
-                    aria-pressed={showPassword}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors rounded-md"
-                  >
-                    <span className="material-icons-round text-xl" aria-hidden="true">
-                      {showPassword ? 'visibility_off' : 'visibility'}
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 pt-8 flex flex-col md:flex-row items-center justify-center gap-2 text-sm font-medium font-display">
-            <span className="text-slate-500">Already have a professional account?</span>
-            <Link href="/login" className="text-pneumo-primary hover:underline">
-              Login
-            </Link>
-          </div>
-        </div>
-
-        <div className="col-span-12 flex flex-col md:flex-row items-center justify-between gap-6 glass-panel rounded-xl p-6 border-signup-primary/20">
-          <div className="flex items-center gap-3">
+          <label htmlFor="signup-terms" className="flex items-start gap-3 cursor-pointer">
             <input
               type="checkbox"
               id="signup-terms"
               name="termsAccepted"
               checked={formData.termsAccepted}
               onChange={handleChange}
-              className="w-5 h-5 rounded text-pneumo-primary border-slate-300 focus:ring-signup-primary bg-white/50"
+              className="mt-0.5 h-4 w-4 rounded-sm accent-[#2563EB]"
             />
-            <label htmlFor="signup-terms" className="text-sm text-slate-600 dark:text-slate-400 leading-snug cursor-pointer">
+            <span className="text-[13px] leading-snug text-[#64748B]">
               I agree to the{' '}
-              <a href="#" className="text-pneumo-primary font-semibold hover:underline">
+              <Link href="#" className="text-[#2563EB] hover:underline">
                 Terms of Service
-              </a>{' '}
+              </Link>{' '}
               and{' '}
-              <a href="#" className="text-pneumo-primary font-semibold hover:underline">
+              <Link href="#" className="text-[#2563EB] hover:underline">
                 Data Handling Policy
-              </a>
+              </Link>
               .
-            </label>
-          </div>
-          <button
-            type="submit"
-            disabled={!formData.termsAccepted}
-            className="w-full md:w-auto bg-pneumo-primary hover:bg-pneumo-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 px-10 rounded-lg transition-all shadow-lg shadow-signup-primary/25 flex items-center justify-center gap-2 group font-display submit"
-          >
+            </span>
+          </label>
+
+          <button type="submit" disabled={!formData.termsAccepted} className="btn-primary w-full">
             Create Account
-            <span className="material-icons-round group-hover:translate-x-1 transition-transform" aria-hidden="true">
+            <span className="material-icons-round text-[18px]" aria-hidden="true">
               arrow_forward
             </span>
           </button>
-        </div>
-      </form>
+
+          <p className="text-center text-[13px] text-[#64748B]">
+            Already have an account?{' '}
+            <Link href="/login" className="text-[#2563EB] hover:underline">
+              Sign in
+            </Link>
+          </p>
+        </form>
+      </div>
+
+      <p className="mt-6 flex items-center justify-center gap-2 border-t border-[#E2E8F0] pt-6 text-[12px] text-[#64748B]">
+        <span className="material-icons-round text-[16px]" aria-hidden="true">
+          lock
+        </span>
+        HIPAA-compliant · TLS 1.3 encrypted · Audit-logged
+      </p>
     </div>
   )
 }

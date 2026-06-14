@@ -1,6 +1,6 @@
 import React, { ViewTransition } from "react"
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { IBM_Plex_Serif, Inter, JetBrains_Mono } from 'next/font/google'
 import { NavigationGuard } from '@/components/navigation-guard'
 import { Providers } from '@/components/providers'
 
@@ -11,10 +11,16 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-const playfairDisplay = Playfair_Display({
+const ibmPlexSerif = IBM_Plex_Serif({
   subsets: ['latin'],
-  variable: '--font-playfair',
-  style: ['italic', 'normal'],
+  variable: '--font-ibm-plex-serif',
+  weight: ['400', '600', '700'],
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  weight: ['400', '500'],
 })
 
 export const metadata: Metadata = {
@@ -29,8 +35,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`} suppressHydrationWarning>
-      <body className="font-sans antialiased bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 overflow-x-hidden">
+    <html lang="en" className={`${inter.variable} ${ibmPlexSerif.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+      <body className="font-sans antialiased bg-[#F8FAFC] text-[#0F172A] overflow-x-hidden">
         <Providers>
           <ViewTransition>
             <NavigationGuard />

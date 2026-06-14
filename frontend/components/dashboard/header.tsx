@@ -6,28 +6,28 @@ export function Header() {
   const [search, setSearch] = useState('')
 
   return (
-    <header className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+    <header className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
       <div>
-        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pneumo-primary/10 text-pneumo-primary text-xs font-bold uppercase tracking-wider mb-4">
-          Live Operations
+        <span className="label-clinical inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EFF6FF] text-[#2563EB] mb-4 border border-[#2563EB]">
+          Doctor Dashboard
         </span>
-        <h1 className="text-3xl lg:text-4xl font-medium tracking-tight text-slate-900 dark:text-white mb-2">
-          Good Morning, <span className="font-serif italic text-pneumo-primary">Dr. Mubeen</span>
+        <h1 className="text-[24px] font-semibold tracking-tight text-[#0F172A] mb-2">
+          Good morning, Dr. Mubeen
         </h1>
-        <p className="text-slate-500 dark:text-slate-400">Ready to review today&apos;s pneumonia diagnostic cases.</p>
+        <p className="text-[14px] text-[#64748B]">Cases requiring your clinical review are listed below.</p>
       </div>
       <div className="relative w-full lg:w-96 group">
         <label htmlFor="dashboard-search" className="sr-only">
           Search patient ID or name
         </label>
-        <span className="material-icons-round absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-pneumo-primary transition-colors pointer-events-none" aria-hidden="true">
+        <span className="material-icons-round absolute left-4 top-1/2 -translate-y-1/2 text-[#64748B] group-focus-within:text-[#2563EB] transition-colors pointer-events-none" aria-hidden="true">
           search
         </span>
         <input
           id="dashboard-search"
           name="search"
           type="search"
-          className="w-full h-12 glass-panel border border-slate-200/60 dark:border-slate-800/60 rounded-2xl pl-12 pr-4 focus:ring-2 focus:ring-pneumo-primary/20 transition-all text-sm text-slate-700 dark:text-slate-200"
+          className="w-full h-12 bg-[#FFFFFF] border border-[#E2E8F0] rounded-sm pl-12 pr-4 focus:ring-2 focus:ring-[#2563EB]/40 transition-all text-[14px] text-[#0F172A]"
           placeholder="Search Patient ID or Name..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}

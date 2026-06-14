@@ -1,109 +1,138 @@
 import { ViewTransition } from 'react'
-import { BackgroundShapes } from '@/components/dashboard/background-shapes'
-import { Sidebar } from '@/components/dashboard/sidebar'
+import Link from 'next/link'
+import { DashboardShell } from '@/components/dashboard/shell'
+import { PageHeader } from '@/components/dashboard/page-header'
 
 export const metadata = {
-  title: 'Create Case | PneumoScan AI',
-  description: 'Create patient records and upload X-ray scans for AI analysis.',
+  title: 'Register Patient | PneumoScan',
+  description: 'Register a new patient and capture clinical details before scan upload.',
 }
+
+const priorities = [
+  { id: 'routine', label: 'Routine', defaultChecked: true },
+  { id: 'urgent', label: 'Urgent', defaultChecked: false },
+  { id: 'emergency', label: 'Emergency', defaultChecked: false },
+]
 
 export default function CreatePage() {
   return (
     <ViewTransition>
-      <div className="flex h-screen overflow-hidden bg-pneumo-bg-light dark:bg-pneumo-bg-dark">
-        <BackgroundShapes />
-        <Sidebar />
-        <main className="flex-1 overflow-y-auto p-6 lg:p-10 ml-20 lg:ml-24">
-          <header className="mb-8">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pneumo-primary/10 text-pneumo-primary text-xs font-bold uppercase tracking-wider mb-4">
-              Create
-            </span>
-            <h1 className="text-3xl lg:text-4xl font-medium tracking-tight text-slate-900 dark:text-white mb-2">
-              New Patient <span className="font-serif italic text-pneumo-primary">Case</span>
-            </h1>
-            <p className="text-slate-500 dark:text-slate-400">Capture patient details and attach chest X-ray scans for analysis.</p>
-          </header>
+      <DashboardShell>
+        <PageHeader
+          eyebrow="Patient Management"
+          title="Register New"
+          serifAccent="Patient"
+          subtitle="Capture demographic and clinical details to open a new case."
+          backHref="/dashboard/patients"
+          backLabel="Back to Patients"
+        />
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-            <section className="p-6 rounded-3xl glass-panel border border-slate-200/60 dark:border-slate-800/60">
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Patient Record</h2>
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="create-patient-name" className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Patient Name</label>
-                  <input id="create-patient-name" name="patientName" className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm" placeholder="Enter full name" />
-                </div>
-                <div>
-                  <label htmlFor="create-patient-id" className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Patient ID</label>
-                  <input id="create-patient-id" name="patientId" className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm" placeholder="e.g. PN-2026-1004" />
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="create-patient-age" className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Age</label>
-                    <input id="create-patient-age" name="age" type="number" min={0} className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm" placeholder="Age" />
-                  </div>
-                  <div>
-                    <label htmlFor="create-patient-gender" className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Gender</label>
-                    <select id="create-patient-gender" name="gender" className="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 text-sm">
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="create-clinical-notes" className="block text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">Clinical Notes</label>
-                  <textarea id="create-clinical-notes" name="clinicalNotes" className="w-full min-h-28 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 px-4 py-3 text-sm resize-none" placeholder="Symptoms, history, and observations..." />
-                </div>
+        <form className="space-y-6">
+          <section className="card-panel p-6">
+            <h2 className="text-[18px] font-semibold text-[#0F172A]">Patient Information</h2>
+            <div className="mt-1 mb-6 h-px bg-[#E2E8F0]" aria-hidden="true" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label htmlFor="first-name" className="field-label">First Name</label>
+                <input id="first-name" name="firstName" className="input-field" placeholder="Ayesha" />
               </div>
-            </section>
-
-            <section className="p-6 rounded-3xl glass-panel border border-slate-200/60 dark:border-slate-800/60">
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">X-ray Upload</h2>
-              <div className="space-y-4">
-                <label htmlFor="create-xray-upload" className="block rounded-2xl border border-dashed border-pneumo-primary/40 bg-pneumo-primary/5 p-8 text-center cursor-pointer hover:bg-pneumo-primary/10 transition-colors">
-                  <span className="inline-flex h-12 w-12 rounded-xl bg-white dark:bg-slate-900 items-center justify-center text-pneumo-primary mb-4">
-                    <span className="material-icons-round" aria-hidden="true">cloud_upload</span>
-                  </span>
-                  <p className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1">Drop X-ray image here or click to upload</p>
-                  <p className="text-xs text-slate-500">Supported: PNG, JPG, DICOM (max 20MB)</p>
-                  <input id="create-xray-upload" name="xray" type="file" accept="image/*,.dcm" className="sr-only" />
-                </label>
-
-                <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/40 dark:bg-slate-900/30 p-4">
-                  <p className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">Analysis Options</p>
-                  <div className="space-y-3 text-sm text-slate-600 dark:text-slate-300" role="group" aria-label="Analysis options">
-                    <label htmlFor="create-severity-score" className="min-h-14 flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 cursor-pointer">
-                      <span id="create-severity-score-label" className="font-medium text-slate-700 dark:text-slate-200">Run pneumonia severity score</span>
-                      <span className="relative inline-flex items-center">
-                        <input id="create-severity-score" defaultChecked type="checkbox" role="switch" aria-labelledby="create-severity-score-label" className="peer sr-only" />
-                        <span className="h-7 w-12 rounded-full bg-slate-300/80 dark:bg-slate-700 transition-colors peer-checked:bg-pneumo-primary peer-focus-visible:ring-2 peer-focus-visible:ring-pneumo-primary/50" aria-hidden="true" />
-                        <span className="absolute left-1 h-5 w-5 rounded-full bg-white shadow transition-transform peer-checked:translate-x-5 pointer-events-none" aria-hidden="true" />
-                      </span>
-                    </label>
-                    <label htmlFor="create-heatmap" className="min-h-14 flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 cursor-pointer">
-                      <span id="create-heatmap-label" className="font-medium text-slate-700 dark:text-slate-200">Generate heatmap explanation</span>
-                      <span className="relative inline-flex items-center">
-                        <input id="create-heatmap" defaultChecked type="checkbox" role="switch" aria-labelledby="create-heatmap-label" className="peer sr-only" />
-                        <span className="h-7 w-12 rounded-full bg-slate-300/80 dark:bg-slate-700 transition-colors peer-checked:bg-pneumo-primary peer-focus-visible:ring-2 peer-focus-visible:ring-pneumo-primary/50" aria-hidden="true" />
-                        <span className="absolute left-1 h-5 w-5 rounded-full bg-white shadow transition-transform peer-checked:translate-x-5 pointer-events-none" aria-hidden="true" />
-                      </span>
-                    </label>
-                  </div>
-                </div>
+              <div>
+                <label htmlFor="last-name" className="field-label">Last Name</label>
+                <input id="last-name" name="lastName" className="input-field" placeholder="Raza" />
               </div>
-            </section>
-          </div>
+              <div>
+                <label htmlFor="dob" className="field-label">Date of Birth</label>
+                <input id="dob" name="dob" type="date" className="input-field" />
+              </div>
+              <div>
+                <label htmlFor="gender" className="field-label">Gender</label>
+                <select id="gender" name="gender" className="input-field" defaultValue="">
+                  <option value="" disabled>Select gender</option>
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="cnic" className="field-label">CNIC / National ID (optional)</label>
+                <input id="cnic" name="cnic" className="input-field" placeholder="35202-XXXXXXX-X" />
+              </div>
+              <div>
+                <label htmlFor="contact" className="field-label">Contact Number</label>
+                <input id="contact" name="contact" type="tel" className="input-field" placeholder="+92 300 XXXXXXX" />
+              </div>
+            </div>
+          </section>
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            <button className="h-11 px-6 rounded-xl bg-pneumo-primary text-white font-semibold hover:bg-pneumo-primary/90 transition-colors">
-              Save Case
-            </button>
-            <button className="h-11 px-6 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/30 text-slate-700 dark:text-slate-200 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors">
-              Save and Analyze
-            </button>
+          <section className="card-panel p-6">
+            <h2 className="text-[18px] font-semibold text-[#0F172A]">Clinical Details</h2>
+            <div className="mt-1 mb-6 h-px bg-[#E2E8F0]" aria-hidden="true" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label htmlFor="referring-doctor" className="field-label">Referring Doctor</label>
+                <select id="referring-doctor" name="referringDoctor" className="input-field" defaultValue="">
+                  <option value="" disabled>Select doctor</option>
+                  <option>Dr. Ahmed Raza</option>
+                  <option>Dr. Sara Khan</option>
+                  <option>Dr. Imran Ali</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="ward" className="field-label">Ward / Department</label>
+                <select id="ward" name="ward" className="input-field" defaultValue="">
+                  <option value="" disabled>Select department</option>
+                  <option>Pulmonology</option>
+                  <option>Radiology</option>
+                  <option>General Medicine</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="mt-5">
+              <label htmlFor="complaint" className="field-label">Chief Complaint / Symptoms</label>
+              <textarea
+                id="complaint"
+                name="complaint"
+                rows={3}
+                className="input-field"
+                placeholder="Persistent cough, fever for 5 days, low oxygen saturation. No prior TB history."
+              />
+            </div>
+
+            <div className="mt-6">
+              <span className="field-label">Priority</span>
+              <div className="flex flex-wrap gap-3" role="radiogroup" aria-label="Priority">
+                {priorities.map((p) => (
+                  <label
+                    key={p.id}
+                    htmlFor={`priority-${p.id}`}
+                    className="flex items-center gap-2.5 h-11 px-4 rounded-sm border border-[#E2E8F0] bg-[#F8FAFC] cursor-pointer text-[14px] text-[#0F172A] has-[:checked]:border-[#2563EB] has-[:checked]:bg-[#EFF6FF] transition-colors"
+                  >
+                    <input
+                      id={`priority-${p.id}`}
+                      type="radio"
+                      name="priority"
+                      defaultChecked={p.defaultChecked}
+                      className="h-4 w-4 accent-[#2563EB]"
+                    />
+                    {p.label}
+                  </label>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <div className="flex flex-wrap gap-3">
+            <button type="button" className="btn-secondary">Save as Draft</button>
+            <Link href="/dashboard/upload" className="btn-primary">
+              Register Patient &amp; Upload Scan
+              <span className="material-icons-round text-[18px]" aria-hidden="true">arrow_forward</span>
+            </Link>
           </div>
-        </main>
-      </div>
+        </form>
+      </DashboardShell>
     </ViewTransition>
   )
 }
