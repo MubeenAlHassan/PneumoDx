@@ -68,9 +68,9 @@ export default function PatientsPage() {
             </select>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto max-h-[480px] overflow-y-auto">
             <table className="w-full text-left">
-              <thead>
+              <thead className="sticky top-0 bg-white z-10">
                 <tr className="label-clinical text-[#64748B] border-b border-[#E2E8F0]">
                   <th className="px-6 py-3 font-medium">Patient</th>
                   <th className="px-6 py-3 font-medium">Age / Gender</th>
@@ -81,8 +81,8 @@ export default function PatientsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E2E8F0]">
-                {patients.map((p) => (
-                  <tr key={p.mrn} className="hover:bg-[#F1F5F9] transition-colors group">
+                {patients.map((p, i) => (
+                  <tr key={p.mrn} className={`hover:bg-[#F1F5F9] transition-colors group ${i % 2 === 1 ? 'bg-[#FAFBFC]' : ''}`}>
                     <td className="px-6 py-3.5">
                       <p className="text-[14px] font-medium text-[#0F172A]">{p.name}</p>
                       <p className="mono-data text-[#64748B]">{p.mrn}</p>

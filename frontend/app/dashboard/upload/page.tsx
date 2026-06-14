@@ -2,10 +2,14 @@
 
 import { ViewTransition, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 import { DashboardShell } from '@/components/dashboard/shell'
 import { PageHeader } from '@/components/dashboard/page-header'
+import { XrayViewer } from '@/components/clinical/xray-viewer'
+import { PneumoScanLogo } from '@/components/brand/pneumoscan-logo'
 
 const steps = [
+  'Uploading image',
   'Pre-processing image',
   'Running CNN inference',
   'Generating confidence map',
@@ -26,6 +30,7 @@ function ProcessingState() {
 
   useEffect(() => {
     if (progress >= 100) {
+      toast.success('Analysis complete', { description: 'Redirecting to AI results…' })
       const t = setTimeout(() => router.push('/dashboard/analysis'), 700)
       return () => clearTimeout(t)
     }
@@ -35,19 +40,23 @@ function ProcessingState() {
 
   return (
     <div className="flex min-h-[60vh] items-center justify-center">
-      <div className="card-panel w-full max-w-lg p-8 text-center">
-        <span className="material-icons-round text-[40px] text-[#2563EB] animate-pulse" aria-hidden="true">
-          coronavirus
-        </span>
-        <h2 className="mt-4 text-[18px] font-semibold text-[#0F172A]">AI Model Running Analysis…</h2>
-        <p className="mt-1 mono-data text-[#64748B]">Patient: Ayesha Raza · MRN-20240612</p>
+      <div className="card-panel w-full max-w-lg p-8">
+        <div className="text-center mb-6">
+          <PneumoScanLogo className="h-12 w-12 mx-auto mb-4" />
+          <h2 className="text-[18px] font-semibold text-[#0F172A]">AI Model Running Analysis…</h2>
+          <p className="mt-1 mono-data text-[#64748B]">Patient: Ayesha Raza · MRN-20240612</p>
+        </div>
 
-        <div className="mt-6 h-2 w-full overflow-hidden rounded-full bg-[#F8FAFC] border border-[#E2E8F0]" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
+        <div className="rounded-lg overflow-hidden border border-[#E2E8F0] mb-6 opacity-60">
+          <XrayViewer viewMode="original" variant="compact" showCorners={false} />
+        </div>
+
+        <div className="h-2 w-full overflow-hidden rounded-full bg-[#F8FAFC] border border-[#E2E8F0]" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
           <div className="h-full rounded-full bg-[#2563EB] transition-all duration-300" style={{ width: `${progress}%` }} />
         </div>
-        <p className="mt-2 mono-data text-[#2563EB]">{progress}%</p>
+        <p className="mt-2 mono-data text-[#2563EB] text-center">{progress}%</p>
 
-        <ul className="mt-6 space-y-2.5 text-left">
+        <ul className="mt-6 space-y-2.5">
           {steps.map((s, i) => {
             const done = i < activeStep || progress >= 100
             const active = i === activeStep && progress < 100
@@ -91,6 +100,7 @@ export default function UploadPage() {
             className="space-y-6"
             onSubmit={(e) => {
               e.preventDefault()
+              toast.info('Upload started', { description: 'Running AI analysis pipeline…' })
               setProcessing(true)
             }}
           >

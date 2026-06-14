@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { PneumoScanLogo } from '@/components/brand/pneumoscan-logo'
 
 type NavItem = { href: string; icon: string; title: string }
 type Variant = 'doctor' | 'admin'
@@ -42,9 +43,7 @@ export function Sidebar({ variant = 'doctor' }: { variant?: Variant }) {
     >
       <div className="px-3 pb-6 border-b border-[#E2E8F0]">
         <Link href={variant === 'admin' ? '/dashboard/admin' : '/dashboard'} className="flex items-center gap-2 rounded-md">
-          <span className="material-icons-round text-[#2563EB]" aria-hidden="true">
-            coronavirus
-          </span>
+          <PneumoScanLogo className="h-7 w-7" />
           <span className="font-serif text-[#0F172A] font-semibold text-[18px]">PneumoScan</span>
         </Link>
         <p className="mt-1 text-[#64748B] mono-data">City Medical Centre</p>

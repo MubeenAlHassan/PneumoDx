@@ -10,16 +10,18 @@ import { LandingContentSections } from '@/components/landing-content-sections'
 
 export default function Page() {
   return (
-    <div className="relative">
+    <div className="relative min-h-screen">
       <BackgroundShapes />
-      <Navigation />
-      <Hero />
-      <SocialProof />
-      <Features />
-      <Workflow />
-      <CTA />
-      <LandingContentSections />
-      <Footer />
+      <div className="relative z-10">
+        <Navigation />
+        <Hero />
+        <SocialProof />
+        <Features />
+        <Workflow />
+        <LandingContentSections />
+        <CTA />
+        <Footer />
+      </div>
     </div>
   )
 }

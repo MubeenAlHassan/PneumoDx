@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${ibmPlexSerif.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <body className="font-sans antialiased bg-[#F8FAFC] text-[#0F172A] overflow-x-hidden">
+      <body className="font-sans antialiased bg-white text-[#0F172A] overflow-x-hidden">
         <Providers>
           <ViewTransition>
             <NavigationGuard />

@@ -41,9 +41,9 @@ export default function AuditLogPage() {
         />
 
         <div className="card-panel overflow-hidden">
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto max-h-[520px] overflow-y-auto">
             <table className="w-full text-left">
-              <thead>
+              <thead className="sticky top-0 bg-white z-10">
                 <tr className="label-clinical text-[#64748B] border-b border-[#E2E8F0]">
                   <th className="px-6 py-3 font-medium">Time (PKT)</th>
                   <th className="px-6 py-3 font-medium">User</th>
@@ -52,7 +52,7 @@ export default function AuditLogPage() {
               </thead>
               <tbody className="divide-y divide-[#E2E8F0]">
                 {entries.map((e, i) => (
-                  <tr key={i} className="hover:bg-[#F1F5F9] transition-colors">
+                  <tr key={i} className={`hover:bg-[#F1F5F9] transition-colors ${i % 2 === 1 ? 'bg-[#FAFBFC]' : ''}`}>
                     <td className="px-6 py-3.5 mono-data text-[#64748B] whitespace-nowrap">{e.time}</td>
                     <td className="px-6 py-3.5 text-[14px] text-[#0F172A] whitespace-nowrap">{e.user}</td>
                     <td className="px-6 py-3.5">

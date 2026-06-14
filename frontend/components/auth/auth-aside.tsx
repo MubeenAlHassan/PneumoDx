@@ -1,3 +1,7 @@
+import { PneumoScanLogo } from '@/components/brand/pneumoscan-logo'
+import { XRAY_IMAGE_SRC } from '@/components/clinical/constants'
+import { ComplianceBadges } from '@/components/clinical/compliance-badges'
+
 interface AuthAsideProps {
   heading: string
   accent: string
@@ -8,24 +12,20 @@ interface AuthAsideProps {
 export function AuthAside({ heading, accent, description, points }: AuthAsideProps) {
   return (
     <div className="relative hidden lg:flex flex-col justify-between p-12 overflow-hidden bg-gradient-to-br from-[#2563EB] to-[#1D4ED8]">
-      {/* Soft white radial glow, upper corner */}
       <div
         className="pointer-events-none absolute -top-40 -left-24 h-96 w-96 rounded-full"
         style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 70%)' }}
         aria-hidden="true"
       />
-      {/* Faint chest X-ray backdrop */}
       <img
-        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWaTkPUEXErwkYIqoLxGjghCfLNU0PhfjCOybqCXaKZCNysChzeu_Bervd_GHxRzob-3gUQBkLC_wY1Qpim2JUQ2h0E1LspPKvn35Z64HR9HkDiEz_wjK95r7xNcIhY3bV_Gqx9ImvlREVvsptQ66hYtdK8qvrgx5FU26RQ-GaX2LF2IoETI_XjHB3mnHEskPEn3NtVfMmBbTp6eOpbIvX8W7SYwVTDDdbD40W6PGIjsYgOrOh0yZg9Fy7EQgXqD7b4apdC_Ss4-I"
+        src={XRAY_IMAGE_SRC}
         alt=""
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.08] mix-blend-luminosity"
       />
 
       <div className="relative z-10 flex items-center gap-2">
-        <span className="material-icons-round text-white" aria-hidden="true">
-          coronavirus
-        </span>
+        <PneumoScanLogo className="h-8 w-8" variant="light" />
         <span className="font-serif text-[22px] font-semibold text-white">PneumoScan</span>
       </div>
 
@@ -49,6 +49,10 @@ export function AuthAside({ heading, accent, description, points }: AuthAsidePro
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-8">
+          <ComplianceBadges size="sm" />
         </div>
       </div>
 

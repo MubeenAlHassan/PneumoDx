@@ -19,6 +19,21 @@
     box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.06);
   }
 
+  .footer-glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-bottom: none;
+    box-shadow:
+      0 -4px 24px rgba(15, 23, 42, 0.06),
+      0 1px 2px rgba(15, 23, 42, 0.04);
+  }
+
+  .landing-unified-bg {
+    isolation: isolate;
+  }
+
   .card-panel {
     background: #FFFFFF;
     border: 1px solid #E2E8F0;
@@ -295,5 +310,310 @@
   to {
     opacity: 0;
     transform: translateY(-4px);
+  }
+}
+
+/* Landing — calm ambient background breathe */
+@keyframes ambient-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1) translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06) translate(1%, -1%);
+  }
+}
+
+@keyframes ambient-hue {
+  0%,
+  100% {
+    background-color: #f8fafc;
+  }
+
+  33% {
+    background-color: #f1f5f9;
+  }
+
+  66% {
+    background-color: #eff6ff;
+  }
+}
+
+/* Hero scan visual */
+@keyframes scan-sweep {
+  0% {
+    top: -8%;
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 0.85;
+  }
+
+  92% {
+    opacity: 0.85;
+  }
+
+  100% {
+    top: 108%;
+    opacity: 0;
+  }
+}
+
+@keyframes heatmap-pulse {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.52;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes confidence-fill {
+  0% {
+    width: 62%;
+  }
+
+  45% {
+    width: 88%;
+  }
+
+  100% {
+    width: 72%;
+  }
+}
+
+@keyframes float-gentle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes ring-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(37, 99, 235, 0);
+  }
+}
+
+@keyframes shape-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: translate(8px, -10px) rotate(3deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes shape-drift-reverse {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translate(-6px, 8px) rotate(-2deg);
+    opacity: 0.85;
+  }
+}
+
+/* Landing — soft light flowing across unified background */
+@keyframes light-flow {
+  0% {
+    transform: translateX(-45%) translateY(0) rotate(14deg);
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 0.65;
+  }
+
+  100% {
+    transform: translateX(145%) translateY(4%) rotate(14deg);
+    opacity: 0.35;
+  }
+}
+
+@keyframes light-flow-reverse {
+  0% {
+    transform: translateX(130%) translateY(6%) rotate(-11deg);
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(-2%) rotate(-11deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes light-glow-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.45;
+  }
+
+  33% {
+    transform: translate(8%, -6%) scale(1.08);
+    opacity: 0.7;
+  }
+
+  66% {
+    transform: translate(-5%, 8%) scale(0.96);
+    opacity: 0.55;
+  }
+}
+
+@keyframes light-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .animate-ambient-breathe {
+    animation: ambient-breathe 14s ease-in-out infinite;
+  }
+
+  .animate-ambient-breathe-slow {
+    animation: ambient-breathe 18s ease-in-out infinite reverse;
+  }
+
+  .animate-scan-sweep {
+    animation: scan-sweep 5.5s ease-in-out infinite;
+  }
+
+  .animate-heatmap-pulse {
+    animation: heatmap-pulse 4s ease-in-out infinite;
+  }
+
+  .animate-confidence-fill {
+    animation: confidence-fill 6s ease-in-out infinite;
+  }
+
+  .animate-float-gentle {
+    animation: float-gentle 5s ease-in-out infinite;
+  }
+
+  .animate-float-gentle-delayed {
+    animation: float-gentle 5s ease-in-out 1.2s infinite;
+  }
+
+  .animate-ring-pulse {
+    animation: ring-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-shape-drift {
+    animation: shape-drift 20s ease-in-out infinite;
+  }
+
+  .animate-shape-drift-reverse {
+    animation: shape-drift-reverse 24s ease-in-out infinite;
+  }
+
+  .animate-shape-drift-slow {
+    animation: shape-drift 28s ease-in-out infinite;
+  }
+
+  .animate-light-flow {
+    animation: light-flow 22s ease-in-out infinite;
+  }
+
+  .animate-light-flow-slow {
+    animation: light-flow 32s ease-in-out infinite reverse;
+  }
+
+  .animate-light-flow-reverse {
+    animation: light-flow-reverse 28s ease-in-out infinite;
+  }
+
+  .animate-light-glow-drift {
+    animation: light-glow-drift 26s ease-in-out infinite;
+  }
+
+  .animate-light-shimmer {
+    animation: light-shimmer 40s linear infinite;
+  }
+
+  .footer-pattern-band {
+    background-image:
+      linear-gradient(135deg, transparent 45%, rgba(37, 99, 235, 0.04) 45%, rgba(37, 99, 235, 0.04) 55%, transparent 55%),
+      linear-gradient(to right, rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px, 24px 24px, 24px 24px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+  }
+
+  .footer-pattern-dots {
+    background-image: radial-gradient(circle at center, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+    background-size: 20px 20px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 75%);
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ambient-breathe,
+  .animate-ambient-breathe-slow,
+  .animate-scan-sweep,
+  .animate-heatmap-pulse,
+  .animate-confidence-fill,
+  .animate-float-gentle,
+  .animate-float-gentle-delayed,
+  .animate-ring-pulse,
+  .animate-shape-drift,
+  .animate-shape-drift-reverse,
+  .animate-shape-drift-slow,
+  .animate-light-flow,
+  .animate-light-flow-slow,
+  .animate-light-flow-reverse,
+  .animate-light-glow-drift,
+  .animate-light-shimmer,
+  .animate-fade-up {
+    animation: none !important;
   }
 }

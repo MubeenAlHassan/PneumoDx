@@ -81,14 +81,14 @@ function SectionHeader({
         {badge}
       </span>
       <h2 className="text-3xl md:text-4xl font-medium tracking-tight mt-4 mb-3">{title}</h2>
-      <p className="text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">{description}</p>
+      <p className="text-slate-600 max-w-3xl leading-relaxed">{description}</p>
     </div>
   )
 }
 
 export function LandingContentSections() {
   return (
-    <div className="max-w-7xl mx-auto px-6 pb-24 md:pb-32 space-y-24 md:space-y-28">
+    <div className="max-w-7xl mx-auto px-6 pb-24 md:pb-28 space-y-20 md:space-y-24">
       <section id="technology" className="scroll-mt-32">
         <SectionHeader
           badge="Technology"
@@ -97,15 +97,12 @@ export function LandingContentSections() {
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {technologyHighlights.map((item) => (
-            <article
-              key={item.title}
-              className="glass-panel rounded-3xl border border-slate-200/60 dark:border-slate-800/60 p-7 bento-card"
-            >
+            <article key={item.title} className="card-panel rounded-xl p-7 bento-card">
               <div className="w-11 h-11 bg-pneumo-primary/10 text-pneumo-primary rounded-xl flex items-center justify-center mb-4">
                 <span className="material-icons-round">{item.icon}</span>
               </div>
               <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{item.description}</p>
+              <p className="text-sm text-slate-600 leading-relaxed">{item.description}</p>
             </article>
           ))}
         </div>
@@ -113,19 +110,16 @@ export function LandingContentSections() {
 
       <section id="trials" className="scroll-mt-32">
         <SectionHeader
-          badge="Clinical Trials"
+          badge="Clinical Validation"
           title="Structured evaluation roadmap"
           description="The project follows a staged validation approach to measure reliability, identify bias, and verify readiness for supervised clinical use."
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {trialMilestones.map((trial) => (
-            <article
-              key={trial.phase}
-              className="glass-panel rounded-3xl border border-slate-200/60 dark:border-slate-800/60 p-7"
-            >
+            <article key={trial.phase} className="card-panel rounded-xl p-7">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-pneumo-primary mb-3">{trial.phase}</p>
               <h3 className="text-xl font-bold mb-2">{trial.title}</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{trial.detail}</p>
+              <p className="text-sm text-slate-600 leading-relaxed">{trial.detail}</p>
             </article>
           ))}
         </div>
@@ -137,11 +131,11 @@ export function LandingContentSections() {
           title="Privacy-first by design"
           description="Clinical imaging data is sensitive. PneumoDx is designed around practical healthcare security controls and transparent governance practices."
         />
-        <div className="bg-slate-900 dark:bg-slate-950 rounded-[2rem] p-8 md:p-10 border border-slate-800">
+        <div className="rounded-2xl p-8 md:p-10 border border-blue-200/60 bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] shadow-blue-glow">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {securityControls.map((control) => (
-              <div key={control} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                <p className="text-sm text-slate-200 leading-relaxed">{control}</p>
+              <div key={control} className="rounded-xl border border-white/20 bg-white/10 p-5">
+                <p className="text-sm text-white/90 leading-relaxed">{control}</p>
               </div>
             ))}
           </div>
@@ -156,15 +150,12 @@ export function LandingContentSections() {
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {resources.map((resource) => (
-            <article
-              key={resource.title}
-              className="glass-panel rounded-3xl border border-slate-200/60 dark:border-slate-800/60 p-7 bento-card"
-            >
+            <article key={resource.title} className="card-panel rounded-xl p-7 bento-card">
               <div className="w-11 h-11 bg-pneumo-primary/10 text-pneumo-primary rounded-xl flex items-center justify-center mb-4">
                 <span className="material-icons-round">{resource.icon}</span>
               </div>
               <h3 className="text-xl font-bold mb-2">{resource.title}</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{resource.description}</p>
+              <p className="text-sm text-slate-600 leading-relaxed">{resource.description}</p>
             </article>
           ))}
         </div>

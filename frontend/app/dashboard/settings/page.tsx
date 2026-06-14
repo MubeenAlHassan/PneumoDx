@@ -1,6 +1,7 @@
 import { ViewTransition } from 'react'
 import { DashboardShell } from '@/components/dashboard/shell'
 import { PageHeader } from '@/components/dashboard/page-header'
+import { ComplianceBadges } from '@/components/clinical/compliance-badges'
 
 export const metadata = {
   title: 'Settings | PneumoScan',
@@ -105,6 +106,10 @@ export default function SettingsPage() {
                   </span>
                 </label>
               ))}
+            </div>
+            <div className="mt-6 pt-6 border-t border-[#E2E8F0]">
+              <p className="label-clinical text-[#64748B] mb-3">Compliance</p>
+              <ComplianceBadges />
             </div>
           </section>
         </div>

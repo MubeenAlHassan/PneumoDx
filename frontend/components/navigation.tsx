@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { PneumoScanLogo } from '@/components/brand/pneumoscan-logo'
 
 const links = [
   { href: '#technology', label: 'Technology' },
@@ -32,7 +33,7 @@ export function Navigation() {
       >
         <Link href="/" className="flex items-center gap-2.5 rounded-full">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] text-white shadow-blue-glow">
-            <span className="material-icons-round text-[20px]" aria-hidden="true">coronavirus</span>
+            <PneumoScanLogo className="h-6 w-6" variant="light" />
           </span>
           <span className="font-serif text-[19px] font-semibold tracking-tight text-[#0F172A]">
             Pneumo<span className="text-[#2563EB]">Scan</span>

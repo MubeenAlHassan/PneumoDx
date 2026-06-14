@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { DashboardShell } from '@/components/dashboard/shell'
 import { PageHeader } from '@/components/dashboard/page-header'
 import { AiResultBadge } from '@/components/dashboard/badges'
+import { DEMO_CASE } from '@/components/clinical/constants'
 
 export const metadata = {
   title: 'Doctor Review & Report | PneumoScan',
@@ -26,23 +27,28 @@ export default function ReportPage() {
           subtitle="MRN-20240612 · Ayesha Raza"
           backHref="/dashboard/analysis"
           backLabel="Back to AI Analysis"
+          actions={
+            <Link href="/dashboard/report/preview" className="btn-secondary">
+              <span className="material-icons-round text-[18px]" aria-hidden="true">picture_as_pdf</span>
+              Preview Certified PDF
+            </Link>
+          }
         />
 
-        {/* Summary cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="card-panel p-6">
             <h2 className="label-clinical text-[#64748B] mb-4">Patient Summary</h2>
             <dl className="space-y-2 text-[14px]">
               {[
-                ['Name', 'Ayesha Raza'],
-                ['Age', '34 years'],
-                ['MRN', 'MRN-20240612'],
-                ['Ward', 'Pulmonology'],
-                ['Scan', '14/06/2024 09:30'],
+                ['Name', DEMO_CASE.patientName],
+                ['Age', DEMO_CASE.age],
+                ['MRN', DEMO_CASE.mrn],
+                ['Ward', DEMO_CASE.ward],
+                ['Scan', DEMO_CASE.scanDate],
               ].map(([k, v]) => (
                 <div key={k} className="flex items-center justify-between">
                   <dt className="text-[#64748B]">{k}</dt>
-                  <dd className="text-[#0F172A]">{v}</dd>
+                  <dd className={`text-[#0F172A] ${k === 'MRN' ? 'mono-data' : ''}`}>{v}</dd>
                 </div>
               ))}
             </dl>
@@ -53,9 +59,9 @@ export default function ReportPage() {
             <AiResultBadge result="detected" confidence={94} />
             <dl className="mt-4 space-y-2 text-[14px]">
               {[
-                ['Confidence', '94.2%'],
-                ['Zone', 'Right Lower Lobe'],
-                ['Severity', 'Moderate'],
+                ['Confidence', DEMO_CASE.confidence],
+                ['Zone', DEMO_CASE.zone],
+                ['Severity', DEMO_CASE.severity],
               ].map(([k, v]) => (
                 <div key={k} className="flex items-center justify-between">
                   <dt className="text-[#64748B]">{k}</dt>
@@ -69,19 +75,15 @@ export default function ReportPage() {
         <form className="mt-6 space-y-6">
           <section className="card-panel p-6">
             <p className="mono-data text-[#2563EB] mb-1">Clinical Report</p>
-            <h2 className="font-serif text-[20px] font-semibold text-[#0F172A]">Dr. Ahmed Raza, MBBS, FCPS (Pulmonology)</h2>
+            <h2 className="font-serif text-[20px] font-semibold text-[#0F172A]">
+              {DEMO_CASE.physicianName}, {DEMO_CASE.physicianCredentials}
+            </h2>
             <div className="mt-1 mb-6 h-px bg-[#E2E8F0]" aria-hidden="true" />
 
             <div className="space-y-5">
               <div>
                 <label htmlFor="findings" className="field-label">Clinical Findings</label>
-                <textarea
-                  id="findings"
-                  name="findings"
-                  rows={4}
-                  className="input-field"
-                  defaultValue="Chest X-Ray (PA view) shows increased opacity and consolidation in the right lower lobe consistent with lobar pneumonia. Air bronchograms are visible. No pleural effusion. Left lung field appears clear."
-                />
+                <textarea id="findings" name="findings" rows={4} className="input-field" defaultValue={DEMO_CASE.findings} />
               </div>
 
               <div>
@@ -120,7 +122,7 @@ export default function ReportPage() {
                   name="recommendations"
                   rows={4}
                   className="input-field"
-                  defaultValue={`1. Initiate empirical antibiotic therapy (Amoxicillin-Clavulanate) pending sputum culture results.\n2. Monitor oxygen saturation. Consider supplemental O2.\n3. Follow-up chest X-ray in 4–6 weeks post-treatment.`}
+                  defaultValue={DEMO_CASE.recommendations.map((r, i) => `${i + 1}. ${r}`).join('\n')}
                 />
               </div>
 
@@ -169,9 +171,10 @@ export default function ReportPage() {
                 </div>
                 <Link href="/dashboard/admin/cosign" className="btn-primary">
                   <span className="material-icons-round text-[18px]" aria-hidden="true">draw</span>
-                  Sign Report — Dr. Ahmed Raza
+                  Sign Report — {DEMO_CASE.physicianName}
                 </Link>
               </div>
+              <p className="mono-data text-[12px] text-[#64748B] mt-4">PMDC No.: {DEMO_CASE.pmdcNo}</p>
             </div>
           </section>
         </form>

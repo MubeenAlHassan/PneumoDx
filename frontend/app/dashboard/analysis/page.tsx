@@ -2,15 +2,12 @@
 
 import { ViewTransition, useState } from 'react'
 import Link from 'next/link'
+import { toast } from 'sonner'
 import { DashboardShell } from '@/components/dashboard/shell'
 import { PageHeader } from '@/components/dashboard/page-header'
 import { AiResultBadge } from '@/components/dashboard/badges'
-
-const views = [
-  { id: 'original', label: 'Original' },
-  { id: 'heatmap', label: 'Heatmap' },
-  { id: 'side', label: 'Side-by-side' },
-] as const
+import { XrayViewer, XrayViewToggle } from '@/components/clinical/xray-viewer'
+import type { XrayViewMode } from '@/components/clinical/constants'
 
 const confidence = [
   { label: 'Pneumonia', value: 94, color: '#EF4444' },
@@ -19,11 +16,9 @@ const confidence = [
 ]
 
 const severityFilled = 3
-const xrayImg =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuDWaTkPUEXErwkYIqoLxGjghCfLNU0PhfjCOybqCXaKZCNysChzeu_Bervd_GHxRzob-3gUQBkLC_wY1Qpim2JUQ2h0E1LspPKvn35Z64HR9HkDiEz_wjK95r7xNcIhY3bV_Gqx9ImvlREVvsptQ66hYtdK8qvrgx5FU26RQ-GaX2LF2IoETI_XjHB3mnHEskPEn3NtVfMmBbTp6eOpbIvX8W7SYwVTDDdbD40W6PGIjsYgOrOh0yZg9Fy7EQgXqD7b4apdC_Ss4-I'
 
 export default function AnalysisPage() {
-  const [view, setView] = useState<(typeof views)[number]['id']>('heatmap')
+  const [view, setView] = useState<XrayViewMode>('heatmap')
 
   return (
     <ViewTransition>
@@ -44,59 +39,34 @@ export default function AnalysisPage() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* X-ray viewer */}
           <section className="card-panel p-6">
             <h2 className="label-clinical text-[#64748B] mb-4">X-Ray Viewer</h2>
-            <div className="relative rounded-lg overflow-hidden border border-[#E2E8F0] bg-black">
-              <img src={xrayImg} alt="Chest X-ray, posteroanterior view" className="w-full h-[360px] object-cover" />
-              {view !== 'original' && (
-                <>
-                  <div className="absolute inset-0 bg-[#2563EB]/20 mix-blend-overlay" aria-hidden="true" />
-                  <div
-                    className="absolute right-[22%] bottom-[26%] h-24 w-24 rounded-full"
-                    style={{ background: 'radial-gradient(circle, rgba(248,113,113,0.6) 0%, rgba(251,191,36,0.25) 55%, transparent 75%)' }}
-                    aria-hidden="true"
-                  />
-                </>
-              )}
-              <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#EF4444] animate-pulse" aria-hidden="true" />
-                <span className="label-clinical text-white">Right Lower Lobe</span>
-              </div>
+            <div className="relative rounded-lg overflow-hidden border border-[#E2E8F0]">
+              <XrayViewer viewMode={view} variant="dashboard" showCorners showZoneLabel />
             </div>
 
-            <div className="mt-4 flex flex-wrap items-center gap-2">
-              {views.map((v) => (
-                <button
-                  key={v.id}
-                  type="button"
-                  onClick={() => setView(v.id)}
-                  className={`h-8 px-3 rounded-sm text-[13px] font-medium transition-colors border ${
-                    view === v.id
-                      ? 'bg-[#EFF6FF] text-[#2563EB] border-[#2563EB]'
-                      : 'bg-transparent text-[#64748B] border-[#E2E8F0] hover:text-[#0F172A]'
-                  }`}
-                >
-                  {v.label}
-                </button>
-              ))}
+            <div className="mt-4">
+              <XrayViewToggle view={view} onChange={setView} />
             </div>
 
             <div className="mt-4 flex items-center justify-between border-t border-[#E2E8F0] pt-4">
               <div className="flex items-center gap-3 text-[#64748B]">
                 <span className="label-clinical">Zoom</span>
-                <button className="h-7 w-7 rounded-sm border border-[#E2E8F0] hover:text-[#2563EB]" aria-label="Zoom out">–</button>
+                <button type="button" className="h-7 w-7 rounded-sm border border-[#E2E8F0] hover:text-[#2563EB]" aria-label="Zoom out">–</button>
                 <span className="mono-data text-[#0F172A]">100%</span>
-                <button className="h-7 w-7 rounded-sm border border-[#E2E8F0] hover:text-[#2563EB]" aria-label="Zoom in">+</button>
+                <button type="button" className="h-7 w-7 rounded-sm border border-[#E2E8F0] hover:text-[#2563EB]" aria-label="Zoom in">+</button>
               </div>
-              <button className="btn-ghost">
+              <button
+                type="button"
+                className="btn-ghost"
+                onClick={() => toast.success('DICOM export queued', { description: 'MRN-20240612 · demo mode' })}
+              >
                 <span className="material-icons-round text-[18px]" aria-hidden="true">download</span>
                 Download DICOM
               </button>
             </div>
           </section>
 
-          {/* AI analysis results */}
           <section className="space-y-6">
             <div className="card-panel p-6">
               <div className="flex items-center justify-between gap-4">
@@ -181,7 +151,11 @@ export default function AnalysisPage() {
                 Proceed to Doctor Review
                 <span className="material-icons-round text-[18px]" aria-hidden="true">arrow_forward</span>
               </Link>
-              <button type="button" className="btn-secondary w-full">
+              <button
+                type="button"
+                className="btn-secondary w-full"
+                onClick={() => toast.info('Case flagged for re-analysis', { description: 'MRN-20240612 queued — demo mode' })}
+              >
                 <span className="material-icons-round text-[18px]" aria-hidden="true">flag</span>
                 Flag for Re-analysis
               </button>

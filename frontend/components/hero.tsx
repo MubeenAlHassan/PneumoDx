@@ -1,68 +1,46 @@
 'use client'
 
-import Link from "next/link"
+import Link from 'next/link'
+import { HeroScanVisual } from '@/components/hero-scan-visual'
 
 export function Hero() {
   return (
-    <header className="relative pt-44 pb-20 px-6 max-w-7xl mx-auto overflow-hidden">
-      <div className="flex flex-col lg:flex-row items-center gap-16">
-        <div className="lg:w-3/5 space-y-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pneumo-primary/10 text-pneumo-primary text-xs font-bold uppercase tracking-wider">
+    <header className="relative pt-40 pb-20 px-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="lg:col-span-7 space-y-7">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pneumo-sky text-pneumo-primary text-xs font-bold uppercase tracking-[0.12em] border border-blue-200/70">
             <span className="flex h-2 w-2 rounded-full bg-pneumo-primary animate-pulse" />
-            Next-Gen Diagnostics
+            Clinical AI Platform
           </div>
-          <h1 className="text-6xl md:text-8xl leading-[1.1] font-medium tracking-tight">
-            Transforming <span className="font-serif italic text-pneumo-primary">Radiology</span>
+          <h1 className="text-5xl md:text-7xl leading-[1.04] font-semibold tracking-tight text-[#0F172A]">
+            Faster pneumonia decisions,
             <br />
-            <span className="text-slate-400 dark:text-slate-500 font-light">Instant Detection.</span>
+            <span className="font-serif italic text-pneumo-primary">with clinician authority.</span>
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed">
-            Harnessing Convolutional neural network architectures to detect pneumonia indicators with 99.4% sensitivity. Empowers clinicians with real-time, explainable diagnostic insights.
+          <p className="text-[17px] text-slate-600 max-w-2xl leading-relaxed">
+            PneumoScan helps hospitals register patients, run AI-assisted chest X-ray analysis, compose structured reports,
+            and complete doctor + hospital sign-off workflows in one premium clinical interface.
           </p>
-          <div className="flex flex-wrap gap-4 pt-4">
-            <Link href="/login" className="bg-pneumo-primary text-white px-8 py-4 rounded-xl font-bold text-lg shadow-blue-glow flex items-center gap-2 group hover:bg-pneumo-primary-hover transition-colors">
-              Get Started{' '}
+          <div className="flex flex-wrap gap-3 pt-2">
+            <Link href="/login" className="btn-primary h-12 px-7 text-[15px] group">
+              Start Clinical Workflow
               <span className="material-icons-round transition-transform group-hover:translate-x-1">
                 arrow_forward
               </span>
             </Link>
-            <button className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
-              View Sample Scan
-            </button>
+            <Link href="/dashboard/report/preview" className="btn-secondary h-12 px-7 text-[15px]">
+              View Sample Report
+            </Link>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-[13px] text-slate-500">
+            <span className="inline-flex items-center gap-1.5"><span className="material-icons-round text-[16px] text-emerald-600">verified</span> Doctor + Admin Sign-off</span>
+            <span className="inline-flex items-center gap-1.5"><span className="material-icons-round text-[16px] text-emerald-600">lock</span> HIPAA-aligned Security</span>
+            <span className="inline-flex items-center gap-1.5"><span className="material-icons-round text-[16px] text-emerald-600">bolt</span> 8–15s AI Turnaround</span>
           </div>
         </div>
 
-        {/* Hero Diagnostic Mockup */}
-        <div className="lg:w-2/5 relative">
-          <div className="relative z-10 p-4 glass-panel rounded-3xl shadow-2xl rotate-3">
-            <div className="bg-slate-900 rounded-2xl overflow-hidden relative aspect-square">
-              <img
-                alt="Chest X-ray diagnostic scan"
-                className="w-full h-full object-cover opacity-60"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3WM2C9Ox1hzkfvVE-D7psir64t8ZSJP5vY3-he4qr5FGhL2RESLAB87MWu9KLT4WTwCoLG8bgUON_5j651pCmCHBFOgPrNm06MdVuDR5W2X-c5ODQ_RX9-x6Lf5yeElHQ4zS1CrmTbE0Zvde5Y9AKZGJlSRHO8Kqd8qHw25hbqoC-tkRizqwXbgrUh8sIbcie1qGH8JqFfOZzDVJPUPd8mEUOF3vIfQpissYw_RbUCYOy_NsO90UnC0Ap6AaSWjOtIE7n1MTTMbw"
-              />
-              <div className="absolute inset-0 border-2 border-pneumo-primary/40 m-12 rounded-xl animate-pulse">
-                <div className="absolute top-0 right-0 bg-pneumo-primary text-white px-2 py-1 text-[10px] rounded-bl-lg font-bold">
-                  POSITIVE 99.2%
-                </div>
-              </div>
-              <div className="absolute bottom-4 left-4 right-4 h-1 bg-white/10 rounded-full overflow-hidden">
-                <div className="w-3/4 h-full bg-pneumo-primary" />
-              </div>
-            </div>
-            <div className="mt-4 flex items-center justify-between px-2">
-              <div>
-                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Patient ID</p>
-                <p className="text-sm font-semibold">PX-9920-A</p>
-              </div>
-              <div className="flex gap-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="w-2 h-2 rounded-full bg-pneumo-primary" />
-                <span className="w-2 h-2 rounded-full bg-slate-300" />
-              </div>
-            </div>
-          </div>
-          <div className="absolute -top-10 -right-10 w-64 h-64 bg-pneumo-lavender/30 rounded-full -z-10 blur-2xl" />
+        <div className="lg:col-span-5 relative min-w-0">
+          <HeroScanVisual />
         </div>
       </div>
     </header>

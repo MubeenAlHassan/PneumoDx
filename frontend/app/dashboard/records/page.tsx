@@ -38,7 +38,7 @@ export default function RecordsPage() {
         <section className="card-panel overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left">
-              <thead>
+              <thead className="sticky top-0 bg-white z-10">
                 <tr className="label-clinical text-[#64748B] border-b border-[#E2E8F0]">
                   <th className="px-6 py-3 font-medium">Report No.</th>
                   <th className="px-6 py-3 font-medium">Patient</th>
@@ -48,8 +48,8 @@ export default function RecordsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E2E8F0]">
-                {records.map((r) => (
-                  <tr key={r.id} className="hover:bg-[#F1F5F9] transition-colors group">
+                {records.map((r, i) => (
+                  <tr key={r.id} className={`hover:bg-[#F1F5F9] transition-colors group ${i % 2 === 1 ? 'bg-[#FAFBFC]' : ''}`}>
                     <td className="px-6 py-3.5 mono-data text-[#2563EB]">{r.id}</td>
                     <td className="px-6 py-3.5">
                       <p className="text-[14px] font-medium text-[#0F172A]">{r.patient}</p>
