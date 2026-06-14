@@ -45,13 +45,13 @@ export function Features() {
         </div>
 
         {/* Medium Card: Security */}
-        <div className="md:col-span-1 md:row-span-2 bento-card bg-slate-900 dark:bg-pneumo-primary/20 rounded-3xl p-8 flex flex-col justify-between text-white">
+        <div className="md:col-span-1 md:row-span-2 bento-card bg-pneumo-primary rounded-3xl p-8 flex flex-col justify-between text-white">
           <div>
             <div className="w-12 h-12 bg-white/10 text-white rounded-xl flex items-center justify-center mb-6">
               <span className="material-icons-round">security</span>
             </div>
             <h3 className="text-2xl font-bold mb-3">Security & Privacy Principles</h3>
-            <p className="text-slate-400 text-sm leading-relaxed">Designed with healthcare data privacy best practices, including encryption, access control, and secure data handling aligned with GDPR and HIPAA principles.</p>
+            <p className="text-white text-sm leading-relaxed">Designed with healthcare data privacy best practices, including encryption, access control, and secure data handling aligned with GDPR and HIPAA principles.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <span className="text-[10px] border border-white/20 px-2 py-1 rounded">Data Encryption</span>
