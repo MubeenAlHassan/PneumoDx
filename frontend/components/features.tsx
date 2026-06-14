@@ -35,22 +35,16 @@ export function Features() {
               Optimized inference keeps turnaround low for emergency triage — typical analysis in 8–15 seconds.
             </p>
           </div>
-          <div className="mt-8 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] overflow-hidden">
-            <div className="px-4 py-2 border-b border-[#E2E8F0] flex items-center justify-between">
-              <span className="label-clinical text-[#64748B]">Live Audit Trail</span>
-              <Link href="/dashboard/admin/audit" className="text-[11px] font-semibold text-[#2563EB] hover:underline">
-                Open log
-              </Link>
+          <div className="mt-8 bg-pneumo-primary/5 rounded-2xl h-48 border border-pneumo-primary/10 overflow-hidden relative">
+            <div className="absolute inset-0 flex items-end px-4 gap-2">
+              <div className="w-full bg-pneumo-primary/20 h-[40%] rounded-t-lg" />
+              <div className="w-full bg-pneumo-primary/30 h-[65%] rounded-t-lg" />
+              <div className="w-full bg-pneumo-primary/40 h-[50%] rounded-t-lg" />
+              <div className="w-full bg-pneumo-primary/50 h-[85%] rounded-t-lg animate-pulse" />
+              <div className="w-full bg-pneumo-primary/20 h-[30%] rounded-t-lg" />
+              <div className="w-full bg-pneumo-primary/60 h-[75%] rounded-t-lg" />
             </div>
-            <ul className="divide-y divide-[#E2E8F0]">
-              {auditPreview.map((e) => (
-                <li key={e.action} className="flex items-center gap-3 px-4 py-2.5 text-[12px]">
-                  <span className="mono-data text-[#64748B] w-10 shrink-0">{e.time}</span>
-                  <span className={`material-icons-round text-[16px] ${e.tint}`} aria-hidden="true">{e.icon}</span>
-                  <span className="text-[#0F172A] truncate">{e.action}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="absolute top-4 right-4 text-[10px] font-mono text-pneumo-primary font-bold">LIVE ACTIVITY</div>
           </div>
         </div>
 
