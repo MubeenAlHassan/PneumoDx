@@ -112,6 +112,7 @@ components/
 | X-ray upload + processing | `/dashboard/upload` |
 | AI analysis results | `/dashboard/analysis` |
 | Report composition / sign-off | `/dashboard/report` |
+| Certified PDF preview | `/dashboard/report/preview` |
 | Scan records | `/dashboard/records` |
 | Settings | `/dashboard/settings` |
 | Hospital admin overview | `/dashboard/admin` |
