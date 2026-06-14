@@ -93,7 +93,7 @@ export function LandingContentSections() {
         <SectionHeader
           badge="Technology"
           title="Built for explainable AI diagnostics"
-          description="PneumoDx combines deep learning, fast inference, and transparent visual outputs to support clinical decisions rather than replace human expertise."
+          description="PneumoScan combines deep learning, fast inference, and transparent visual outputs to support clinical decisions rather than replace human expertise."
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {technologyHighlights.map((item) => (
