@@ -1,25 +1,6 @@
 'use client'
 
-const technologyHighlights = [
-  {
-    icon: 'memory',
-    title: 'CNN-Powered Classification',
-    description:
-      'A convolutional neural network is trained on chest X-ray datasets to classify pneumonia risk with clinically interpretable confidence scores.',
-  },
-  {
-    icon: 'visibility',
-    title: 'Explainable Heatmaps',
-    description:
-      'Grad-CAM style overlays mark regions that influenced predictions so radiologists can quickly validate model focus areas.',
-  },
-  {
-    icon: 'speed',
-    title: 'Real-Time Workflow',
-    description:
-      'Optimized inference keeps turnaround low for emergency triage, helping teams prioritize severe cases first.',
-  },
-]
+import { LandingSectionHeader } from '@/components/landing-section-header'
 
 const trialMilestones = [
   {
@@ -66,53 +47,16 @@ const resources = [
   },
 ]
 
-function SectionHeader({
-  badge,
-  title,
-  description,
-}: {
-  badge: string
-  title: string
-  description: string
-}) {
-  return (
-    <div className="mb-10 md:mb-12">
-      <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pneumo-primary/10 text-pneumo-primary text-xs font-bold uppercase tracking-wider">
-        {badge}
-      </span>
-      <h2 className="text-3xl md:text-4xl font-medium tracking-tight mt-4 mb-3">{title}</h2>
-      <p className="text-slate-600 max-w-3xl leading-relaxed">{description}</p>
-    </div>
-  )
-}
-
 export function LandingContentSections() {
   return (
     <div className="max-w-7xl mx-auto px-6 pb-24 md:pb-28 space-y-20 md:space-y-24">
-      <section id="technology" className="scroll-mt-32">
-        <SectionHeader
-          badge="Technology"
-          title="Built for explainable AI diagnostics"
-          description="PneumoScan combines deep learning, fast inference, and transparent visual outputs to support clinical decisions rather than replace human expertise."
-        />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {technologyHighlights.map((item) => (
-            <article key={item.title} className="card-panel rounded-xl p-7 bento-card">
-              <div className="w-11 h-11 bg-pneumo-primary/10 text-pneumo-primary rounded-xl flex items-center justify-center mb-4">
-                <span className="material-icons-round">{item.icon}</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section id="trials" className="scroll-mt-32">
-        <SectionHeader
-          badge="Clinical Validation"
-          title="Structured evaluation roadmap"
+        <LandingSectionHeader
+          eyebrow="Clinical validation"
+          title="Structured evaluation"
+          titleAccent="roadmap."
           description="The project follows a staged validation approach to measure reliability, identify bias, and verify readiness for supervised clinical use."
+          align="left"
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {trialMilestones.map((trial) => (
@@ -126,10 +70,12 @@ export function LandingContentSections() {
       </section>
 
       <section id="security" className="scroll-mt-32">
-        <SectionHeader
-          badge="Security"
-          title="Privacy-first by design"
+        <LandingSectionHeader
+          eyebrow="Security"
+          title="Privacy-first"
+          titleAccent="by design."
           description="Clinical imaging data is sensitive. PneumoDx is designed around practical healthcare security controls and transparent governance practices."
+          align="left"
         />
         <div className="rounded-2xl p-8 md:p-10 border border-blue-200/60 bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] shadow-blue-glow">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -143,10 +89,12 @@ export function LandingContentSections() {
       </section>
 
       <section id="resources" className="scroll-mt-32">
-        <SectionHeader
-          badge="Resources"
-          title="Everything needed to adopt and present"
+        <LandingSectionHeader
+          eyebrow="Resources"
+          title="Everything needed to adopt"
+          titleAccent="and present."
           description="Centralized materials help clinicians, developers, and students understand the system, reproduce outcomes, and onboard quickly."
+          align="left"
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {resources.map((resource) => (

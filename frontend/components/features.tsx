@@ -3,23 +3,15 @@
 import Link from 'next/link'
 import { XrayViewer } from '@/components/clinical/xray-viewer'
 
-const auditPreview = [
-  { time: '09:42', user: 'AI System', action: 'Analysis complete MRN-20240612', icon: 'smart_toy', tint: 'text-[#F59E0B]' },
-  { time: '10:15', user: 'Dr. Ahmed Raza', action: 'Signed report CMC-2024-0612', icon: 'draw', tint: 'text-[#2563EB]' },
-  { time: '11:00', user: 'H. Sadiq', action: 'Co-signed report CMC-2024-0612', icon: 'workspace_premium', tint: 'text-[#10B981]' },
-]
-
 export function Features() {
   return (
-    <main className="max-w-7xl mx-auto px-6 pb-28 animate-fade-up">
-      <div className="mb-14">
-        <span className="label-clinical inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pneumo-sky text-pneumo-primary border border-blue-200/70 mb-4">
-          What We Do
-        </span>
-        <h2 className="text-4xl md:text-5xl font-medium tracking-tight max-w-3xl mb-4 text-[#0F172A]">
+    <section id="technology" className="scroll-mt-28 max-w-7xl mx-auto px-6 pb-20 md:pb-28">
+      <div className="mb-14 text-center max-w-3xl mx-auto">
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#64748B] mb-4">What we do</p>
+        <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-medium tracking-tight mb-4 text-[#0F172A] leading-[1.12]">
           Clinical intelligence for <span className="font-serif italic text-pneumo-primary">modern hospitals.</span>
         </h2>
-        <p className="text-slate-600 max-w-2xl leading-relaxed">
+        <p className="text-[16px] text-[#64748B] leading-relaxed">
           PneumoScan combines AI detection, explainable heatmaps, structured reporting, and dual sign-off so teams can move from scan to certified report without workflow friction.
         </p>
       </div>
@@ -84,6 +76,6 @@ export function Features() {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   )
 }
