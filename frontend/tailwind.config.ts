@@ -101,6 +101,10 @@ const config: Config = {
         'blue-glow': '0 10px 30px rgba(37,99,235,0.25)',
       },
       keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
         'accordion-down': {
           from: {
             height: '0',
@@ -119,6 +123,7 @@ const config: Config = {
         },
       },
       animation: {
+        marquee: 'marquee 28s linear infinite',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
