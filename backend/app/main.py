@@ -1,19 +1,37 @@
+"""FastAPI application entry point.
+
+Creates the app, configures CORS for the Next.js frontend, registers
+middleware/exception handlers, and mounts the versioned (v1) API router.
+"""
+
 from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+from app.api.v1.api import api_router
+from app.core.config import settings
+from app.middleware.audit_middleware import register_audit_middleware
+from app.middleware.error_handler import register_exception_handlers
 
-class UserCreate(BaseModel):
-    name: str
-    email: str
-    age: int
+app = FastAPI(title=settings.PROJECT_NAME)
 
-# Path Parameters
-app.get("/users/{user_id}") 
-def get_users(user_id: int):
-    return {"User ID" : user_id}
+# Allow the frontend origin(s) to call the API.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.CORS_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-# Query Parameters
-app.get("/products")
-def get_products(limit: int = 10):
-    return {"Limit" : limit}
+# Cross-cutting concerns.
+register_exception_handlers(app)
+register_audit_middleware(app)
+
+# Mount versioned API.
+app.include_router(api_router, prefix=settings.API_V1_PREFIX)
+
+
+@app.get("/health", tags=["health"])
+def health_check():
+    """Liveness probe used by Docker/compose and uptime checks."""
+    return {"status": "ok"}
