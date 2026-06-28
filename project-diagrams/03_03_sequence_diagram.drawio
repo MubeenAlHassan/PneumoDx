@@ -1,0 +1,45 @@
+<mxfile host="app.diagrams.net" modified="2026-06-25T11:24:00.000Z" agent="5.0" version="24.7.17">
+  <diagram id="seq-pneumodx" name="Sequence Diagram">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1300" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="l1" value="Doctor/Staff" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="60" width="120" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="l2" value="Frontend (Next.js)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="60" width="150" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="l3" value="Backend API (FastAPI)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="60" width="170" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="l4" value="PostgreSQL" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="850" y="60" width="120" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="l5" value="ML Service (Python)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="60" width="150" height="1080" as="geometry"/>
+        </mxCell>
+        <mxCell id="l6" value="Hospital Admin" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="60" width="130" height="1080" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="s1" value="1. Login request" style="endArrow=block;html=1;" edge="1" parent="1" source="l1" target="l2"><mxGeometry relative="1" as="geometry"><mxPoint x="300" y="160" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s2" value="2. POST /api/v1/auth/login" style="endArrow=block;html=1;" edge="1" parent="1" source="l2" target="l3"><mxGeometry relative="1" as="geometry"><mxPoint x="560" y="200" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s3" value="3. Verify user + issue JWT" style="endArrow=block;html=1;" edge="1" parent="1" source="l3" target="l4"><mxGeometry relative="1" as="geometry"><mxPoint x="860" y="240" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s4" value="4. Register patient" style="endArrow=block;html=1;" edge="1" parent="1" source="l2" target="l3"><mxGeometry relative="1" as="geometry"><mxPoint x="560" y="310" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s5" value="5. INSERT patient" style="endArrow=block;html=1;" edge="1" parent="1" source="l3" target="l4"><mxGeometry relative="1" as="geometry"><mxPoint x="860" y="350" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s6" value="6. Upload X-ray + metadata" style="endArrow=block;html=1;" edge="1" parent="1" source="l2" target="l3"><mxGeometry relative="1" as="geometry"><mxPoint x="560" y="420" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s7" value="7. Persist scan" style="endArrow=block;html=1;" edge="1" parent="1" source="l3" target="l4"><mxGeometry relative="1" as="geometry"><mxPoint x="860" y="460" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s8" value="8. Call ML inference" style="endArrow=block;html=1;" edge="1" parent="1" source="l3" target="l5"><mxGeometry relative="1" as="geometry"><mxPoint x="1090" y="500" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s9" value="9. Return label/confidence/heatmap" style="endArrow=block;html=1;" edge="1" parent="1" source="l5" target="l3"><mxGeometry relative="1" as="geometry"><mxPoint x="620" y="540" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s10" value="10. Save ai_analyses + update scan status" style="endArrow=block;html=1;" edge="1" parent="1" source="l3" target="l4"><mxGeometry relative="1" as="geometry"><mxPoint x="860" y="580" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s11" value="11. Display AI result for review" style="endArrow=block;html=1;" edge="1" parent="1" source="l3" target="l2"><mxGeometry relative="1" as="geometry"><mxPoint x="350" y="620" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s12" value="12. Doctor updates + signs report" style="endArrow=block;html=1;" edge="1" parent="1" source="l2" target="l3"><mxGeometry relative="1" as="geometry"><mxPoint x="560" y="700" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s13" value="13. Save report + signature hash" style="endArrow=block;html=1;" edge="1" parent="1" source="l3" target="l4"><mxGeometry relative="1" as="geometry"><mxPoint x="860" y="740" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s14" value="14. Admin co-sign &amp; certify" style="endArrow=block;html=1;" edge="1" parent="1" source="l6" target="l3"><mxGeometry relative="1" as="geometry"><mxPoint x="560" y="820" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s15" value="15. Update report status + audit logs" style="endArrow=block;html=1;" edge="1" parent="1" source="l3" target="l4"><mxGeometry relative="1" as="geometry"><mxPoint x="860" y="860" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="s16" value="16. Return certified PDF URL" style="endArrow=block;html=1;" edge="1" parent="1" source="l3" target="l2"><mxGeometry relative="1" as="geometry"><mxPoint x="350" y="920" as="targetPoint"/></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

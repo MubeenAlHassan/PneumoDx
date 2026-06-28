@@ -1,0 +1,44 @@
+<mxfile host="app.diagrams.net" modified="2026-06-25T11:26:00.000Z" agent="5.0" version="24.7.17">
+  <diagram id="erd-pneumodx" name="ER Diagram">
+    <mxGraphModel dx="1700" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1300" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t1" value="hospitals&#xa;PK id&#xa;registration_no (UQ)&#xa;name, type, city, country&#xa;created_at, updated_at" style="shape=swimlane;whiteSpace=wrap;html=1;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="70" y="70" width="250" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="t2" value="users&#xa;PK id&#xa;FK hospital_id -&gt; hospitals.id&#xa;email (UQ), password_hash&#xa;role, status, license_no&#xa;created_at, updated_at" style="shape=swimlane;whiteSpace=wrap;html=1;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="390" y="70" width="290" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="t3" value="patients&#xa;PK id&#xa;FK hospital_id -&gt; hospitals.id&#xa;mrn (UQ), first_name, last_name&#xa;FK referring_doctor_id -&gt; users.id&#xa;priority, created_at, updated_at" style="shape=swimlane;whiteSpace=wrap;html=1;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="390" y="360" width="290" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="t4" value="scans&#xa;PK id&#xa;FK patient_id -&gt; patients.id&#xa;FK uploaded_by -&gt; users.id&#xa;file_path, scan_type, status&#xa;created_at, updated_at" style="shape=swimlane;whiteSpace=wrap;html=1;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="750" y="360" width="290" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="t5" value="ai_analyses&#xa;PK id&#xa;FK scan_id -&gt; scans.id (UQ)&#xa;analysis_ref (UQ)&#xa;label, confidence, severity&#xa;confidence_breakdown (JSONB)" style="shape=swimlane;whiteSpace=wrap;html=1;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="250" width="290" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="t6" value="reports&#xa;PK id&#xa;FK scan_id -&gt; scans.id (UQ)&#xa;FK patient_id -&gt; patients.id&#xa;FK doctor_id -&gt; users.id&#xa;report_no (UQ), status&#xa;pdf_path, created_at, updated_at" style="shape=swimlane;whiteSpace=wrap;html=1;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="530" width="300" height="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="t7" value="signatures&#xa;PK id&#xa;FK report_id -&gt; reports.id&#xa;FK signer_id -&gt; users.id&#xa;signature_type, signature_hash&#xa;signed_at, created_at, updated_at" style="shape=swimlane;whiteSpace=wrap;html=1;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="530" width="300" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="t8" value="audit_logs&#xa;PK id&#xa;FK hospital_id -&gt; hospitals.id&#xa;FK user_id -&gt; users.id&#xa;action, resource_type, result&#xa;ip_address, created_at, updated_at" style="shape=swimlane;whiteSpace=wrap;html=1;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="750" y="70" width="320" height="230" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="er1" value="1..*" style="endArrow=block;html=1;" edge="1" parent="1" source="t1" target="t2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="er2" value="1..*" style="endArrow=block;html=1;" edge="1" parent="1" source="t1" target="t3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="er3" value="1..*" style="endArrow=block;html=1;" edge="1" parent="1" source="t3" target="t4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="er4" value="1..1" style="endArrow=block;html=1;" edge="1" parent="1" source="t4" target="t5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="er5" value="1..1" style="endArrow=block;html=1;" edge="1" parent="1" source="t4" target="t6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="er6" value="1..*" style="endArrow=block;html=1;" edge="1" parent="1" source="t6" target="t7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="er7" value="*..1" style="endArrow=block;html=1;" edge="1" parent="1" source="t7" target="t2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="er8" value="*..1" style="endArrow=block;html=1;" edge="1" parent="1" source="t8" target="t1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="er9" value="*..1" style="endArrow=block;html=1;" edge="1" parent="1" source="t8" target="t2"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

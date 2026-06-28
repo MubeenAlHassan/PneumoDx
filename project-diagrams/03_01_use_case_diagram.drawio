@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" modified="2026-06-25T11:20:00.000Z" agent="5.0" version="24.7.17">
+  <diagram id="usecase-pneumodx" name="Use Case Diagram">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="sys" value="PneumoDx System" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="260" y="70" width="980" height="760" as="geometry"/>
+        </mxCell>
+        <mxCell id="a1" value="Hospital Admin" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="130" width="60" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2" value="Doctor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="320" width="60" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="a3" value="Radiologist" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="500" width="60" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="a4" value="Staff/Reception" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="680" width="60" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="u1" value="Register Hospital" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="120" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="u2" value="Manage Doctors" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="120" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="u3" value="View Audit Logs" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="120" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="u4" value="Register Patient" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="280" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="u5" value="Upload X-Ray" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="280" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="u6" value="Run AI Analysis" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="280" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="u7" value="Review AI Result" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="450" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="u8" value="Create/Update Report" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="450" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="u9" value="Doctor Sign-Off" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="450" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="u10" value="Admin Co-Sign &amp; Certify" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="620" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="u11" value="Download Certified PDF" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="620" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="u12" value="Flag for Re-analysis" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="620" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" style="endArrow=none;html=1;" edge="1" parent="1" source="a1" target="u1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="endArrow=none;html=1;" edge="1" parent="1" source="a1" target="u2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="endArrow=none;html=1;" edge="1" parent="1" source="a1" target="u3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="endArrow=none;html=1;" edge="1" parent="1" source="a4" target="u4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="endArrow=none;html=1;" edge="1" parent="1" source="a3" target="u5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="endArrow=none;html=1;" edge="1" parent="1" source="a3" target="u6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" style="endArrow=none;html=1;" edge="1" parent="1" source="a2" target="u7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" style="endArrow=none;html=1;" edge="1" parent="1" source="a2" target="u8"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9" style="endArrow=none;html=1;" edge="1" parent="1" source="a2" target="u9"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e10" style="endArrow=none;html=1;" edge="1" parent="1" source="a1" target="u10"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" style="endArrow=none;html=1;" edge="1" parent="1" source="a2" target="u11"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e12" style="endArrow=none;html=1;" edge="1" parent="1" source="a2" target="u12"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

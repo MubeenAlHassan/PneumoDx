@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" modified="2026-06-28T20:58:00.000Z" agent="Mozilla/5.0" version="24.7.17">
+  <diagram id="component-diagram-pneumodx" name="Component Diagram">
+    <mxGraphModel dx="1420" dy="872" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="ui" value="Frontend (Next.js)&#xa;- Landing&#xa;- Auth&#xa;- Dashboard&#xa;- Admin Pages" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="90" y="330" width="220" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="api" value="Backend API (FastAPI)&#xa;/api/v1 Routes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="410" y="300" width="250" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="svc" value="Service Layer&#xa;- AuthService&#xa;- PatientService&#xa;- ScanService&#xa;- ReportService&#xa;- AuditService" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="410" y="430" width="250" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="repo" value="Repository Layer&#xa;- UserRepository&#xa;- PatientRepository&#xa;- ScanRepository&#xa;- ReportRepository&#xa;- AuditRepository" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="730" y="430" width="250" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="db" value="PostgreSQL&#xa;- users&#xa;- hospitals&#xa;- patients&#xa;- scans&#xa;- ai_analyses&#xa;- reports&#xa;- signatures&#xa;- audit_logs" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="420" width="230" height="185" as="geometry"/>
+        </mxCell>
+        <mxCell id="ml" value="ML Service (Python/PyTorch)&#xa;- predictor.py&#xa;- gradcam_utils.py&#xa;- model.pth inference" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="730" y="210" width="250" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="storage" value="Storage Utilities&#xa;- X-ray file paths&#xa;- Heatmap paths&#xa;- PDF/report artifact paths" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="210" width="230" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="c1" value="HTTP/JSON" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="ui" target="api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c2" value="delegate" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="api" target="svc">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c3" value="data access" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="svc" target="repo">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c4" value="ORM queries" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="repo" target="db">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c5" value="inference request" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="svc" target="ml">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c6" value="prediction + heatmap metadata" style="endArrow=block;html=1;rounded=0;dashed=1;" edge="1" parent="1" source="ml" target="svc">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c7" value="file path handling" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="svc" target="storage">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="c8" value="persist metadata" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="storage" target="db">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

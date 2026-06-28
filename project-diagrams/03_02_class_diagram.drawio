@@ -1,0 +1,42 @@
+<mxfile host="app.diagrams.net" modified="2026-06-25T11:22:00.000Z" agent="5.0" version="24.7.17">
+  <diagram id="class-pneumodx" name="Class Diagram">
+    <mxGraphModel dx="1500" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="c1" value="Hospital&#xa;----------------&#xa;+ id: UUID&#xa;+ name&#xa;+ registration_no" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="120" width="210" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="c2" value="User&#xa;----------------&#xa;+ id: UUID&#xa;+ hospital_id: FK&#xa;+ role&#xa;+ status" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="80" width="220" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="c3" value="Patient&#xa;----------------&#xa;+ id: UUID&#xa;+ hospital_id: FK&#xa;+ mrn&#xa;+ priority" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="310" width="220" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="c4" value="Scan&#xa;----------------&#xa;+ id: UUID&#xa;+ patient_id: FK&#xa;+ status&#xa;+ scan_type" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="310" width="220" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="c5" value="AiAnalysis&#xa;----------------&#xa;+ id: UUID&#xa;+ scan_id: FK (1:1)&#xa;+ label&#xa;+ confidence" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="210" width="240" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="c6" value="Report&#xa;----------------&#xa;+ id: UUID&#xa;+ scan_id: FK (1:1)&#xa;+ patient_id: FK&#xa;+ status" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="430" width="240" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="c7" value="Signature&#xa;----------------&#xa;+ id: UUID&#xa;+ report_id: FK&#xa;+ signer_id: FK&#xa;+ signature_type" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="430" width="240" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="c8" value="AuditLog&#xa;----------------&#xa;+ id: UUID&#xa;+ hospital_id: FK&#xa;+ user_id: FK&#xa;+ action&#xa;+ result" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="80" width="220" height="190" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1" value="1..* users" style="endArrow=block;html=1;" edge="1" parent="1" source="c1" target="c2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="r2" value="1..* patients" style="endArrow=block;html=1;" edge="1" parent="1" source="c1" target="c3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="r3" value="1..* scans" style="endArrow=block;html=1;" edge="1" parent="1" source="c3" target="c4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="r4" value="1..1 analysis" style="endArrow=block;html=1;" edge="1" parent="1" source="c4" target="c5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="r5" value="1..1 report" style="endArrow=block;html=1;" edge="1" parent="1" source="c4" target="c6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="r6" value="1..* signatures" style="endArrow=block;html=1;" edge="1" parent="1" source="c6" target="c7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="r7" value="*..1 signer" style="endArrow=block;html=1;" edge="1" parent="1" source="c7" target="c2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="r8" value="* audit events" style="endArrow=block;html=1;" edge="1" parent="1" source="c2" target="c8"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
