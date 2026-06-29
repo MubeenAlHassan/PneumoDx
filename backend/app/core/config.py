@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     API_V1_PREFIX: str = "/api/v1"
 
     # Database (PostgreSQL) connection string
-    DATABASE_URL: str = "postgresql://postgres:password@db:5432/appdb"
+    DATABASE_URL: str = "postgresql://postgres:password@localhost:5432/appdb"
 
     # External ML microservice base URL (pneumonia detection + GradCAM)
     ML_SERVICE_URL: str = "http://ml-services:5000"
