@@ -2,20 +2,40 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+
+import { useAuth } from '@/contexts/auth-context'
+import { ApiError } from '@/lib/api/client'
 
 export function LoginForm() {
+  const { login } = useAuth()
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const email = String(formData.get('email') ?? '').trim()
+    const password = String(formData.get('password') ?? '')
+
+    if (!email || !password) {
+      toast.error('Enter your email and password to continue.')
+      return
+    }
+
     setIsLoading(true)
-    setTimeout(() => {
+    try {
+      await login({ email, password })
+      toast.success('Signed in successfully.')
+    } catch (error) {
+      const message =
+        error instanceof ApiError
+          ? error.message
+          : 'Unable to sign in. Check your connection and try again.'
+      toast.error(message)
+    } finally {
       setIsLoading(false)
-      router.push('/dashboard')
-    }, 900)
+    }
   }
 
   return (
@@ -32,7 +52,7 @@ export function LoginForm() {
             <input
               id="login-email"
               name="email"
-              type="text"
+              type="email"
               autoComplete="username"
               required
               placeholder="dr.ahmed@citymed.pk"
@@ -51,6 +71,7 @@ export function LoginForm() {
                 type={showPassword ? 'text' : 'password'}
                 autoComplete="current-password"
                 required
+                minLength={8}
                 placeholder="••••••••••••"
                 className="input-field pr-16"
               />
