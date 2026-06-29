@@ -2,10 +2,9 @@
 
 import Link from 'next/link'
 import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 export function SignupForm() {
-  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
     fullName: '',
@@ -26,7 +25,9 @@ export function SignupForm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    router.push('/dashboard')
+    toast.message('Doctor accounts are created by your hospital admin.', {
+      description: 'Sign in if you already have credentials, or register your hospital first.',
+    })
   }
 
   return (
