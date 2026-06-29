@@ -12,10 +12,12 @@ const doctorLinks = [
 
 const adminLinks = [
   { href: '/dashboard/admin', icon: 'dashboard', label: 'Overview' },
-  { href: '/dashboard/admin/cosign', icon: 'draw', label: 'Co-sign' },
+  { href: '/dashboard/patients', icon: 'groups', label: 'Patients' },
   { href: '/dashboard/admin/doctors', icon: 'medical_services', label: 'Doctors' },
   { href: '/dashboard/admin/audit', icon: 'history', label: 'Audit' },
 ]
+
+const exactRoots = ['/dashboard', '/dashboard/admin']
 
 interface BottomNavProps {
   variant?: 'doctor' | 'admin'
@@ -32,7 +34,10 @@ export function BottomNav({ variant = 'doctor' }: BottomNavProps) {
     >
       <div className="flex items-stretch justify-around px-2 py-2">
         {links.map((link) => {
-          const active = pathname === link.href || pathname.startsWith(`${link.href}/`)
+          const active =
+            exactRoots.includes(link.href)
+              ? pathname === link.href
+              : pathname === link.href || pathname.startsWith(`${link.href}/`)
           return (
             <Link
               key={link.href}
