@@ -2,15 +2,55 @@
 
 import Link from 'next/link'
 import { FormEvent, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+
+import { useAuth } from '@/contexts/auth-context'
+import { ApiError } from '@/lib/api/client'
 
 export function RegisterHospitalForm() {
-  const router = useRouter()
+  const { registerHospital } = useAuth()
   const [agreed, setAgreed] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    router.push('/dashboard/admin')
+
+    const formData = new FormData(e.currentTarget)
+    const password = String(formData.get('password') ?? '')
+    const confirmPassword = String(formData.get('confirmPassword') ?? '')
+
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match. Re-enter them and try again.')
+      return
+    }
+
+    if (password.length < 8) {
+      toast.error('Password must be at least 8 characters.')
+      return
+    }
+
+    setIsLoading(true)
+    try {
+      await registerHospital({
+        hospital_name: String(formData.get('hospitalName') ?? '').trim(),
+        hospital_type: String(formData.get('hospitalType') ?? '') || null,
+        registration_no: String(formData.get('registrationNo') ?? '').trim(),
+        city: String(formData.get('city') ?? '').trim() || null,
+        country: String(formData.get('country') ?? '').trim() || null,
+        admin_name: String(formData.get('adminName') ?? '').trim(),
+        admin_email: String(formData.get('adminEmail') ?? '').trim(),
+        password,
+      })
+      toast.success('Hospital account created. Welcome to PneumoScan.')
+    } catch (error) {
+      const message =
+        error instanceof ApiError
+          ? error.message
+          : 'Unable to create the hospital account. Check your connection and try again.'
+      toast.error(message)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -75,11 +115,11 @@ export function RegisterHospitalForm() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label htmlFor="admin-password" className="field-label">Password</label>
-                <input id="admin-password" name="password" type="password" autoComplete="new-password" required className="input-field" placeholder="••••••••••••" />
+                <input id="admin-password" name="password" type="password" autoComplete="new-password" required minLength={8} className="input-field" placeholder="••••••••••••" />
               </div>
               <div>
                 <label htmlFor="admin-confirm" className="field-label">Confirm Password</label>
-                <input id="admin-confirm" name="confirmPassword" type="password" autoComplete="new-password" required className="input-field" placeholder="••••••••••••" />
+                <input id="admin-confirm" name="confirmPassword" type="password" autoComplete="new-password" required minLength={8} className="input-field" placeholder="••••••••••••" />
               </div>
             </div>
           </fieldset>
@@ -99,8 +139,8 @@ export function RegisterHospitalForm() {
             </span>
           </label>
 
-          <button type="submit" disabled={!agreed} className="btn-primary w-full">
-            Create Hospital Account
+          <button type="submit" disabled={!agreed || isLoading} aria-busy={isLoading} className="btn-primary w-full">
+            {isLoading ? 'Creating account…' : 'Create Hospital Account'}
             <span className="material-icons-round text-[18px]" aria-hidden="true">arrow_forward</span>
           </button>
 
