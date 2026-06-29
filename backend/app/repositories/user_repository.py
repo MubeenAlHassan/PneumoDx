@@ -9,7 +9,7 @@ class UserRepository(BaseRepository):
 
     def get_by_email(self, email: str):
         """Look up a user by email (used during login)."""
-        ...
+        return self.db.query(User).filter(User.email == email).first()
 
     def list_doctors(self, hospital_id):
         """List doctors belonging to a hospital (admin doctor screen)."""

@@ -4,7 +4,7 @@ Hospital registration also creates the first admin user (see auth/user
 schemas), matching the Register Hospital screen.
 """
 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
 from app.schemas.common import ORMModel
 
@@ -20,7 +20,7 @@ class HospitalCreate(BaseModel):
     # Administrator account
     admin_name: str
     admin_email: EmailStr
-    password: str
+    password: str = Field(min_length=8, max_length=128)
 
 
 class HospitalRead(ORMModel):

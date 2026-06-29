@@ -1,13 +1,24 @@
-"""Global exception handling.
+"""Global exception handling."""
 
-Registers handlers that turn domain/HTTP exceptions into consistent JSON error
-responses (the frontend expects clear, actionable error states).
-"""
-
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 
 
 def register_exception_handlers(app: FastAPI) -> None:
     """Attach app-wide exception handlers to the FastAPI instance."""
-    # TODO: handle HTTPException, validation errors, and unexpected errors
-    ...
+
+    @app.exception_handler(HTTPException)
+    async def http_exception_handler(_request: Request, exc: HTTPException):
+        return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
+
+    @app.exception_handler(RequestValidationError)
+    async def validation_exception_handler(_request: Request, exc: RequestValidationError):
+        return JSONResponse(status_code=422, content={"detail": exc.errors()})
+
+    @app.exception_handler(Exception)
+    async def unhandled_exception_handler(_request: Request, _exc: Exception):
+        return JSONResponse(
+            status_code=500,
+            content={"detail": "Internal server error"},
+        )
